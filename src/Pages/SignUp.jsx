@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const SignUp = () => {
+
+    const {user, signUpUser} = useContext(AuthContext);
+
+
   return (
     <div>
       <section class="bg-gray-50 dark:bg-gray-900">

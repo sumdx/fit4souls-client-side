@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
-  const loginHandle = () => {
 
-    
+    const {user} = useContext(AuthContext);
+    console.log(user);
+  const loginHandle = (e) => {
+
+
   };
   return (
     <div>
