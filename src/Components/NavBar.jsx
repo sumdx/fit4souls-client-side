@@ -30,19 +30,15 @@ const menuItems = (
 const NavBar = () => {
   return (
     <div>
-      <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <nav class="max-w-screen-xl mx-auto bg-white border-gray-200 dark:bg-gray-900">
+        <div class=" flex flex-wrap items-center justify-between mx-auto p-4">
           <a
-            href="https://flowbite.com/"
+            
             class="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              class="h-8"
-              alt="Flowbite Logo"
-            />
+            
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
+              Fit4Soul
             </span>
           </a>
           <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
