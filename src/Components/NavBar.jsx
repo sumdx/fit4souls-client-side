@@ -18,7 +18,7 @@ const NavBar = () => {
         }
       }, [isDarkMode]);
   // TODO :
-  const user = false;
+  const user = true;
   const menuItems = (
     <>
       <li>
@@ -45,7 +45,7 @@ const NavBar = () => {
       {user && (
         <>
           <li>
-            <NavLink to={"/dashb"}>Dashboard</NavLink>
+            <NavLink to={"/dashboard"}>Dashboard</NavLink>
           </li>
         </>
       )}

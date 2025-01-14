@@ -12,6 +12,7 @@ import ErrorPage from './Pages/ErrorPage.jsx';
 import Home from './Pages/Home.jsx';
 import Login from './Pages/Login.jsx';
 import SignUp from './Pages/SignUp.jsx';
+import Dashboard from './Layout/Dashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,17 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "dashboard",
+    element :<Dashboard></Dashboard>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children :[
+      {
+        path : "dashboard"
+        
+      }
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
