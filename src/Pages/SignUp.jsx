@@ -1,9 +1,8 @@
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <div>
       <section class="bg-gray-50 dark:bg-gray-900">
@@ -41,9 +40,25 @@ const Login = () => {
           <div>
             <div class="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                Sign in to Fit4Soul
+                Sign Up in to Fit4Soul
               </h2>
               <form class="mt-8 space-y-6" action="#">
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
                 <div>
                   <label
                     for="email"
@@ -77,6 +92,26 @@ const Login = () => {
                   />
                 </div>
 
+                <label
+                  class="block text-sm font-medium text-gray-900 dark:text-white"
+                  for="user_avatar"
+                >
+                  Upload profile photo
+                </label>
+                <input
+                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  aria-describedby="user_avatar_help"
+                  id="user_avatar"
+                  type="file"
+                />
+                <div
+                  class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                  id="user_avatar_help"
+                >
+                  A profile picture is useful to confirm your are logged into
+                  your account
+                </div>
+
                 <button
                   type="submit"
                   class="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -84,9 +119,12 @@ const Login = () => {
                   Login to your account
                 </button>
                 <button className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white">
-                    <FaGoogle ></FaGoogle>
-                    Sign in with Google
+                  <FaGoogle></FaGoogle>
+                  Sign in with Google
                 </button>
+
+                
+
                 <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
                   Not registered yet?{" "}
                   <NavLink to={"/signup"}>
@@ -104,4 +142,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

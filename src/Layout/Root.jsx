@@ -4,10 +4,14 @@ import NavBar from "../Components/NavBar";
 
 const Root = () => {
     return (
-        <div>
-            <NavBar></NavBar>
-            <Outlet></Outlet>
+        <div className='relative font-poppins bg-gray-50  dark:bg-gray-900 flex flex-col min-h-screen'>
+        <NavBar className="absolute top-0 container mx-auto z-20 bg-transparent"></NavBar>
+        <div className='flex-grow'>
+        <Outlet></Outlet>
         </div>
+        
+        
+    </div>
     );
 };
 
