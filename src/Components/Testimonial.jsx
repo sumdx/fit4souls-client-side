@@ -13,10 +13,10 @@ const Testimonial = () => {
             delay: 2000,
             disableOnInteraction: true,
           }}
-        onSlideChange={() => console.log("slide change")}
+        //onSlideChange={() => console.log("slide change")}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        onSwiper={(swiper) => console.log(swiper)}
+        //onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
             640: {
                 slidesPerView: 1,

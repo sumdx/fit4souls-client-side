@@ -3,30 +3,57 @@ import { FaGoogle } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../Firebase/firebase.init";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const SignUp = () => {
-
-
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm();
-  const { user, signUpUser , signOutUser} = useContext(AuthContext);
+  const { user, signUpUser, signOutUser } = useContext(AuthContext);
 
-  const onSubmit = (data) => {
-    
-    signUpUser(data.email, data.password)
-    .then(result =>{
-        console.log(result)
-        reset();
-    })
-    .catch(err =>{
-        console.log(err)
-    })
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.photoUrl[0] };
+
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+
+    if (res.data.success) {
+      const photoUrL = res.data.data.display_url;
+      console.log("photurl 1",photoUrL);
+      
+      signUpUser(data.email, data.password)
+        .then((result) => {
+          console.log(result);
+
+          updateProfile(auth.currentUser, {
+            displayName: data.name,
+            photoURL: photoUrL,
+          })
+            .then((res) => {
+              //signOutUser();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          reset();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("Image did not get");
+    }
   };
 
   return (
@@ -138,19 +165,19 @@ const SignUp = () => {
                     placeholder="••••••••"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  {
-                    errors.password?.type === "required" && <span className="text-red-700 ml-2 mt-8">
-                    * Password is required
-                   </span>
-                  }
-                  {
-                    errors.password?.type === "minLength" && <span className="text-red-700 ml-2 mt-8">
-                    * Password must be 6 characters long.
-                   </span>
-                  }
+                  {errors.password?.type === "required" && (
+                    <span className="text-red-700 ml-2 mt-8">
+                      * Password is required
+                    </span>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <span className="text-red-700 ml-2 mt-8">
+                      * Password must be 6 characters long.
+                    </span>
+                  )}
                   {errors.password && (
                     <span className="text-red-700 ml-2 mt-8">
-                     {errors.password.message}
+                      {errors.password.message}
                     </span>
                   )}
                 </div>

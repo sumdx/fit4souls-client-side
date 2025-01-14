@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "flowbite";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 
 // Dark
 
@@ -18,7 +19,13 @@ const NavBar = () => {
         }
       }, [isDarkMode]);
   // TODO :
-  const user = true;
+      const {user, signOutUser} = useContext(AuthContext);
+      console.log(user)
+
+
+const signOutHandle=()=>{
+    signOutUser();
+}
   const menuItems = (
     <>
       <li>
@@ -44,6 +51,9 @@ const NavBar = () => {
       
       {user && (
         <>
+          <li onClick={signOutHandle}>
+              SignOut
+          </li>
           <li>
             <NavLink to={"/dashboard"}>Dashboard</NavLink>
           </li>
@@ -74,7 +84,7 @@ const NavBar = () => {
                   <span class="sr-only">Open user menu</span>
                   <img
                     class="w-8 h-8 rounded-full"
-                    src="/docs/images/people/profile-picture-3.jpg"
+                    src={user.photoURL}
                     alt="user photo"
                   />
                 </button>
@@ -118,6 +128,7 @@ const NavBar = () => {
                     </li>
                     <li>
                       <a
+                        onClick={signOutHandle}
                         href="#"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >

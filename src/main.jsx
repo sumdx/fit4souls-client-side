@@ -14,6 +14,8 @@ import Login from './Pages/Login.jsx';
 import SignUp from './Pages/SignUp.jsx';
 import Dashboard from './Layout/Dashboard.jsx';
 import AuthProvider from './Providers/AuthProvider.jsx';
+import AllTrainers from './Pages/AllTrainers.jsx';
+import AllClasses from './Pages/AllClasses.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +34,16 @@ const router = createBrowserRouter([
       {
         path : "signup",
         element : <SignUp></SignUp>
+      },
+      {
+        path:"trainers",
+        element: <AllTrainers></AllTrainers>
+      },
+      {
+        path:"classes",
+        element:<AllClasses></AllClasses>
       }
+     
     ]
   },
   {

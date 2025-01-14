@@ -1,17 +1,42 @@
 import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
 
-    const {user} = useContext(AuthContext);
-    console.log(user);
-  const loginHandle = (e) => {
+    const {user, signInUser, signInUserWithGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
+     const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+      } = useForm();
+  const onSubmit = (data) => {
 
-
+    signInUser(data.email, data.password)
+    .then(res=>{
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   };
+
+  const googleSignInHandle = () => {
+    signInUserWithGoogle()
+    .then(res=>{
+      navigate("/");
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  }
+
+
   return (
     <div>
       <section class="bg-gray-50 dark:bg-gray-900">
@@ -51,7 +76,7 @@ const Login = () => {
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
                 Sign in to Fit4Soul
               </h2>
-              <form class="mt-8 space-y-6" action="#">
+              <form onSubmit={handleSubmit(onSubmit)} class="mt-8 space-y-6" action="#">
                 <div>
                   <label
                     for="email"
@@ -60,6 +85,7 @@ const Login = () => {
                     Your email
                   </label>
                   <input
+                  {...register("email", { required: true })}
                     type="email"
                     name="email"
                     id="email"
@@ -76,6 +102,7 @@ const Login = () => {
                     Your password
                   </label>
                   <input
+                    {...register("password", { required: true })}
                     type="password"
                     name="password"
                     id="password"
@@ -91,7 +118,9 @@ const Login = () => {
                 >
                   Login to your account
                 </button>
-                <button className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white">
+                
+              </form>
+              <button onClick={googleSignInHandle} className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white">
                   <FaGoogle></FaGoogle>
                   Sign in with Google
                 </button>
@@ -103,7 +132,6 @@ const Login = () => {
                     </p>
                   </NavLink>
                 </div>
-              </form>
             </div>
           </div>
         </div>
