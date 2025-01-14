@@ -2,16 +2,38 @@ import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import { useForm } from "react-hook-form";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const SignUp = () => {
 
-    const {user, signUpUser} = useContext(AuthContext);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const { user, signUpUser , signOutUser} = useContext(AuthContext);
+
+  const onSubmit = (data) => {
+    
+    signUpUser(data.email, data.password)
+    .then(result =>{
+        console.log(result)
+        reset();
+    })
+    .catch(err =>{
+        console.log(err)
+    })
+  };
 
   return (
     <div>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
+          {/* Left Side */}
           <div class="flex flex-col justify-center">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               We invest in the world’s potential
@@ -42,12 +64,17 @@ const SignUp = () => {
               </svg>
             </a>
           </div>
+          {/* Right Side */}
           <div>
             <div class="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
                 Sign Up in to Fit4Soul
               </h2>
-              <form class="mt-8 space-y-6" action="#">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                class="mt-8 space-y-6"
+                action="#"
+              >
                 <div>
                   <label
                     for="email"
@@ -56,13 +83,18 @@ const SignUp = () => {
                     Your Name
                   </label>
                   <input
+                    {...register("name", { required: true })}
                     type="text"
                     name="name"
                     id="name"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Your Name"
-                    required
                   />
+                  {errors.name && (
+                    <span className="text-red-700 ml-2 mt-8">
+                      * Name is Required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -72,13 +104,17 @@ const SignUp = () => {
                     Your email
                   </label>
                   <input
-                    type="email"
+                    {...register("email", { required: true })}
                     name="email"
                     id="email"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
-                    required
                   />
+                  {errors.email && (
+                    <span className="text-red-700 ml-2 pt-8">
+                      * Email is Required
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
@@ -88,33 +124,62 @@ const SignUp = () => {
                     Your password
                   </label>
                   <input
-                    type="password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: {
+                        value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/, // At least 8 chars, 1 letter, and 1 number
+                        message:
+                          "* Password must be include at least 1 Uppercase letter, 1 lowercase letter and 1 number",
+                      },
+                    })}
                     name="password"
                     id="password"
                     placeholder="••••••••"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
                   />
+                  {
+                    errors.password?.type === "required" && <span className="text-red-700 ml-2 mt-8">
+                    * Password is required
+                   </span>
+                  }
+                  {
+                    errors.password?.type === "minLength" && <span className="text-red-700 ml-2 mt-8">
+                    * Password must be 6 characters long.
+                   </span>
+                  }
+                  {errors.password && (
+                    <span className="text-red-700 ml-2 mt-8">
+                     {errors.password.message}
+                    </span>
+                  )}
                 </div>
-
-                <label
-                  class="block text-sm font-medium text-gray-900 dark:text-white"
-                  for="user_avatar"
-                >
-                  Upload profile photo
-                </label>
-                <input
-                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                  aria-describedby="user_avatar_help"
-                  id="user_avatar"
-                  type="file"
-                />
-                <div
-                  class="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                  id="user_avatar_help"
-                >
-                  A profile picture is useful to confirm your are logged into
-                  your account
+                <div>
+                  <label
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    for="user_avatar"
+                  >
+                    Upload profile photo
+                  </label>
+                  <input
+                    {...register("photoUrl", { required: true })}
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    aria-describedby="user_avatar_help"
+                    id="user_avatar"
+                    type="file"
+                  />
+                  {errors.photoUrl && (
+                    <span className="text-red-700 ml-2 mt-8">
+                      * Image is Required
+                    </span>
+                  )}
+                  <div
+                    class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                    id="user_avatar_help"
+                  >
+                    A profile picture is useful to confirm your are logged into
+                    your account
+                  </div>
                 </div>
 
                 <button
@@ -128,13 +193,11 @@ const SignUp = () => {
                   Sign in with Google
                 </button>
 
-                
-
                 <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
-                  Not registered yet?{" "}
-                  <NavLink to={"/signup"}>
-                    <p class="text-blue-600 hover:underline dark:text-blue-500">
-                      Create account
+                  Allready a member ?{" "}
+                  <NavLink to={"/login"}>
+                    <p class="ml-2 text-blue-600 hover:underline dark:text-blue-500">
+                      Login
                     </p>
                   </NavLink>
                 </div>
