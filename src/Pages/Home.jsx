@@ -1,8 +1,10 @@
+import Testimonial from "../Components/Testimonial";
+
 
 const Home = () => {
     return (
         <div>
-            This is home route 
+           <Testimonial> </Testimonial>
         </div>
     );
 };
