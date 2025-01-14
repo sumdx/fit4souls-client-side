@@ -1,44 +1,56 @@
 import { NavLink } from "react-router-dom";
 import "flowbite";
+import { useEffect, useState } from "react";
 
 // Dark
 
-// TODO :
-const user = false;
-const menuItems = (
-  <>
-    <li>
-      <NavLink to={"/"}> Home</NavLink>
-    </li>
-    <li>
-      <NavLink to={"/trainers"}>Trainers</NavLink>
-    </li>
-    <li>
-      <NavLink to={"/classes"}>Classes</NavLink>
-    </li>
-    <li>
-      <NavLink to={"/community"}>Community</NavLink>
-    </li>
-    <li>
-      <label class=" inline-flex items-center cursor-pointer justify-center">
-        <input type="checkbox" value="" class="sr-only peer" />
-        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-          Dark
-        </span>
-      </label>
-    </li>
-    {user && (
-      <>
-        <li>
-          <NavLink to={"/dashb"}>Dashboard</NavLink>
-        </li>
-      </>
-    )}
-  </>
-);
-
 const NavBar = () => {
+    const [isDarkMode, setIsDarkMode] = useState(
+        localStorage.getItem("theme") === "dark"
+      );
+      useEffect(() => {
+        if (isDarkMode) {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+        }
+      }, [isDarkMode]);
+  // TODO :
+  const user = false;
+  const menuItems = (
+    <>
+      <li>
+        <NavLink to={"/"}> Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/trainers"}>Trainers</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/classes"}>Classes</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/community"}>Community</NavLink>
+      </li>
+      <li>
+      <button
+      onClick={() => setIsDarkMode(!isDarkMode)}
+      className=" rounded-md"
+    >
+      {isDarkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
+    </button>
+      </li>
+      
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/dashb"}>Dashboard</NavLink>
+          </li>
+        </>
+      )}
+    </>
+  );
   return (
     <div>
       <nav class="max-w-screen-xl mx-auto bg-white border-gray-200 dark:bg-gray-900">
@@ -164,7 +176,7 @@ const NavBar = () => {
             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-user"
           >
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border dark:text-white border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               {menuItems}
             </ul>
           </div>
