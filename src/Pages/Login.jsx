@@ -4,6 +4,10 @@ import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 
 const Login = () => {
+  const loginHandle = () => {
+
+    
+  };
   return (
     <div>
       <section class="bg-gray-50 dark:bg-gray-900">
@@ -84,8 +88,8 @@ const Login = () => {
                   Login to your account
                 </button>
                 <button className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white">
-                    <FaGoogle ></FaGoogle>
-                    Sign in with Google
+                  <FaGoogle></FaGoogle>
+                  Sign in with Google
                 </button>
                 <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
                   Not registered yet?{" "}
