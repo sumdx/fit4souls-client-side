@@ -16,6 +16,7 @@ import Dashboard from './Layout/Dashboard.jsx';
 import AuthProvider from './Providers/AuthProvider.jsx';
 import AllTrainers from './Pages/AllTrainers.jsx';
 import AllClasses from './Pages/AllClasses.jsx';
+import Community from './Pages/Community.jsx';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path:"classes",
         element:<AllClasses></AllClasses>
+      },
+      {
+        path:"community",
+        element:<Community></Community>
       }
      
     ]

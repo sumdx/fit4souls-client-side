@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.init";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const SignUp = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const axiosPublic = useAxiosPublic();
   const {
     register,
@@ -18,10 +23,11 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const { user, signUpUser, signOutUser } = useContext(AuthContext);
-
+  if (user) {
+    return navigate("/");
+  }
   const onSubmit = async (data) => {
     const imageFile = { image: data.photoUrl[0] };
-
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
@@ -30,29 +36,47 @@ const SignUp = () => {
 
     if (res.data.success) {
       const photoUrL = res.data.data.display_url;
-      console.log("photurl 1",photoUrL);
-      
+
       signUpUser(data.email, data.password)
         .then((result) => {
-          console.log(result);
-
           updateProfile(auth.currentUser, {
             displayName: data.name,
             photoURL: photoUrL,
           })
             .then((res) => {
-              //signOutUser();
+              
+              const userInfo = {
+                name: data.name,
+                email: data.email,
+                photoURL: photoUrL,
+                role: "member",
+              };
+              axiosPublic
+                .post("/users", userInfo)
+                .then(() => {
+                  Swal.fire({
+                    title: "Success!",
+                    text: "Artifact Information Added Successfully",
+                    icon: "success",
+                    confirmButtonText: "Okay",
+                  });
+                  reset();
+                  signOutUser();
+                  navigate(from, { replace: true });
+                })
+                .catch(() => {
+                  Swal.fire({
+                    title: "Error!",
+                    text: "Something Wrong",
+                    icon: "error",
+                    confirmButtonText: "Okay",
+                  });
+                });
             })
-            .catch((err) => {
-              console.log(err);
-            });
-          reset();
+            .catch((err) => {});
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     } else {
-      console.log("Image did not get");
     }
   };
 

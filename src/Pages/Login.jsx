@@ -1,41 +1,39 @@
 import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-
-    const {user, signInUser, signInUserWithGoogle} = useContext(AuthContext);
-    const navigate = useNavigate();
-     const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-      } = useForm();
+  const { user, signInUser, signInUserWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if (user) {
+    return navigate("/");
+  }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
-
     signInUser(data.email, data.password)
-    .then(res=>{
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
+      .then((res) => {
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {});
   };
 
   const googleSignInHandle = () => {
     signInUserWithGoogle()
-    .then(res=>{
-      navigate("/");
-    })
-    .catch(err =>{
-      console.log(err);
-    })
-  }
-
+      .then((res) => {
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {});
+  };
 
   return (
     <div>
@@ -76,7 +74,11 @@ const Login = () => {
               <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
                 Sign in to Fit4Soul
               </h2>
-              <form onSubmit={handleSubmit(onSubmit)} class="mt-8 space-y-6" action="#">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                class="mt-8 space-y-6"
+                action="#"
+              >
                 <div>
                   <label
                     for="email"
@@ -85,7 +87,7 @@ const Login = () => {
                     Your email
                   </label>
                   <input
-                  {...register("email", { required: true })}
+                    {...register("email", { required: true })}
                     type="email"
                     name="email"
                     id="email"
@@ -118,20 +120,22 @@ const Login = () => {
                 >
                   Login to your account
                 </button>
-                
               </form>
-              <button onClick={googleSignInHandle} className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white">
-                  <FaGoogle></FaGoogle>
-                  Sign in with Google
-                </button>
-                <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
-                  Not registered yet?{" "}
-                  <NavLink to={"/signup"}>
-                    <p class="text-blue-600 hover:underline dark:text-blue-500">
-                      Create account
-                    </p>
-                  </NavLink>
-                </div>
+              <button
+                onClick={googleSignInHandle}
+                className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white"
+              >
+                <FaGoogle></FaGoogle>
+                Sign in with Google
+              </button>
+              <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
+                Not registered yet?{" "}
+                <NavLink to={"/signup"}>
+                  <p class="text-blue-600 hover:underline dark:text-blue-500">
+                    Create account
+                  </p>
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>

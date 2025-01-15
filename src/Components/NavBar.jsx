@@ -20,7 +20,7 @@ const NavBar = () => {
       }, [isDarkMode]);
   // TODO :
       const {user, signOutUser} = useContext(AuthContext);
-      console.log(user)
+      
 
 
 const signOutHandle=()=>{
