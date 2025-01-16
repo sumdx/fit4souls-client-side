@@ -18,6 +18,9 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import TrainerDetails from "./Pages/TrainerDetails.jsx";
+import TrainersApply from "./Pages/TrainersApply.jsx";
+import PrivateRoute from "./Providers/PrivateRoute.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -31,25 +34,33 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "login",
+        path: "/login",
         element: <Login></Login>,
       },
       {
-        path: "signup",
+        path: "/signup",
         element: <SignUp></SignUp>,
       },
       {
-        path: "trainers",
+        path: "/trainers",
         element: <AllTrainers></AllTrainers>,
       },
       {
-        path: "classes",
+        path: "/classes",
         element: <AllClasses></AllClasses>,
       },
       {
-        path: "community",
+        path: "/community",
         element: <Community></Community>,
       },
+      {
+        path : "/trainers/:id",
+        element : <TrainerDetails></TrainerDetails>
+      },
+      {
+        path : "/trainers/apply",
+        element : <PrivateRoute><TrainersApply></TrainersApply></PrivateRoute>
+      }
     ],
   },
   {
@@ -59,6 +70,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "dashboard",
+        element:<Dashboard></Dashboard>
       },
     ],
   },

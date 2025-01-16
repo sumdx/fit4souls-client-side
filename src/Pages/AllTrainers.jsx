@@ -43,30 +43,7 @@ const AllTrainers = () => {
           return <TrainersCard trainer={trainer}></TrainersCard>;
         })}
       </div>
-      <div className="mt-16 max-w-screen-xl mx-auto">
-        <section class="rounded-xl bg-center bg-no-repeat bg-[url('https://i.ibb.co/ctJTKXp/pexels-victorfreitas-841130.jpg')] bg-gray-700 bg-blend-multiply">
-          <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-24">
-            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
-              Start your career as a Trainer
-            </h1>
-            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
-              Here at Fit4Soul we focus on system where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
-            </p>
-            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-
-              <NavLink class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Join as Trainer</NavLink>
-              
-              <a
-                href="#"
-                class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
-              >
-                Learn more
-              </a>
-            </div>
-          </div>
-        </section>
-      </div>
+      
     </div>
   );
 };

@@ -53,30 +53,54 @@ const SignUp = () => {
               };
               axiosPublic
                 .post("/users", userInfo)
-                .then(() => {
-                  Swal.fire({
-                    title: "Success!",
-                    text: "Artifact Information Added Successfully",
-                    icon: "success",
-                    confirmButtonText: "Okay",
-                  });
-                  reset();
-                  signOutUser();
-                  navigate(from, { replace: true });
+                .then((res) => {
+                  if(res.data.insertedId)
+                  {
+                    Swal.fire({
+                      title: "Success!",
+                      text: "Artifact Information Added Successfully",
+                      icon: "success",
+                      confirmButtonText: "Okay",
+                    });
+                    reset();
+                    signOutUser();
+                    navigate(from, { replace: true });
+                  }
+                  
                 })
                 .catch(() => {
                   Swal.fire({
                     title: "Error!",
-                    text: "Something Wrong",
+                    text: "Something Wrong in saving user data in database",
                     icon: "error",
                     confirmButtonText: "Okay",
                   });
                 });
             })
-            .catch((err) => {});
+            .catch((err) => {
+              Swal.fire({
+                title: "Error!",
+                text: "Something Wrong to update the profile Name and Photo",
+                icon: "error",
+                confirmButtonText: "Okay",
+              });
+            });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          Swal.fire({
+            title: "Error!",
+            text: "Something Wrong while registering email/ data is exist already.",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
+        });
     } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Photo Upload Failed! Try again.",
+        icon: "error",
+        confirmButtonText: "Okay",
+      });
     }
   };
 
