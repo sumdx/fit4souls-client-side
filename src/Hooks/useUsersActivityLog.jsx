@@ -7,7 +7,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 const useUsersActivityLog = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useContext(AuthContext);
-    const {data : activityLogData =[]} = useQuery({
+    const {refetch,data : activityLogData =[]} = useQuery({
         queryKey :["activityLogData"],
         queryFn :async () =>{
             const res = await axiosSecure.get(`/activity-log/?email=${user.email}`)
@@ -15,12 +15,12 @@ const useUsersActivityLog = () => {
         }
     })
     const rejectedData = activityLogData.filter(
-        (item) => item.status === "rejected"
+        (item) => item.status.includes("rejected")
       );
       const pendingData = activityLogData.filter(
-        (item) => item.status === "pending"
+        (item) => item.status.includes("pending")
       );
-    return [activityLogData,rejectedData,pendingData];
+    return [activityLogData,rejectedData, pendingData, refetch];
 };
 
 export default useUsersActivityLog;
