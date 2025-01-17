@@ -24,6 +24,16 @@ import PrivateRoute from "./Providers/PrivateRoute.jsx";
 import TrainersApplications from "./Pages/Dashboard/Admin/TrainersApplications.jsx";
 import ApplicationDetails from "./Pages/Dashboard/Admin/ApplicationDetails.jsx";
 import ActivityLog from "./Pages/Dashboard/Users/ActivityLog.jsx";
+import UserRoute from "./Providers/UserRoute.jsx";
+import BookedTrainer from "./Pages/Dashboard/Users/BookedTrainer.jsx";
+import Profile from "./Pages/Dashboard/Shared/Profile.jsx";
+import AdminTrainerSharedRoute from "./Providers/AdminTrainerSharedRoute.jsx";
+import AddNewForum from "./Pages/Dashboard/Shared/AddNewForum.jsx";
+import AdminRoute from "./Providers/AdminRoute.jsx";
+import AllNewsletterSubscribers from "./Pages/Dashboard/Admin/AllNewsletterSubscribers.jsx";
+import TrainerRoute from "./Providers/TrainerRoute.jsx";
+import AddNewSlot from "./Pages/Dashboard/Trainer/AddNewSlot.jsx";
+import ManageSlot from "./Pages/Dashboard/Trainer/ManageSlot.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -71,6 +81,7 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      // admin routes
       {
         path: "dashboard",
         element:<Dashboard></Dashboard>
@@ -81,11 +92,41 @@ const router = createBrowserRouter([
       },
       {
         path: "application-details/:id",
-        element : <ApplicationDetails></ApplicationDetails>,
+        element : <AdminRoute><ApplicationDetails></ApplicationDetails> </AdminRoute> ,
       },
       {
+        path: "newsletter-subscribers",
+        element : <AdminRoute><AllNewsletterSubscribers></AllNewsletterSubscribers></AdminRoute>
+      },
+      
+      // Trainer routes
+      {
+        path : "add-slots",
+        element: <TrainerRoute><AddNewSlot></AddNewSlot></TrainerRoute>
+      },
+      {
+        path : "manage-slots",
+        element: <TrainerRoute><ManageSlot></ManageSlot></TrainerRoute>
+      },
+      // Admin Trainer Shared Route
+      {
+        path : "post-forum",
+        element : <AdminTrainerSharedRoute><AddNewForum></AddNewForum></AdminTrainerSharedRoute>
+      },
+
+      // users
+      {
         path: "activity-log",
-        element : <ActivityLog></ActivityLog>,
+        element : <UserRoute><ActivityLog></ActivityLog></UserRoute>,
+      },
+      {
+        path: "booked-trainer",
+        element : <UserRoute><BookedTrainer></BookedTrainer></UserRoute>
+      },
+      // all users
+      {
+        path: "profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       }
     ],
   },

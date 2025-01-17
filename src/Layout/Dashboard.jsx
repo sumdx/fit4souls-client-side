@@ -45,7 +45,7 @@ const Dashboard = () => {
                 
             </li>
             <li>
-                <NavLink to={"/dashboard/newsletter-subscriber"} className="flex items-center text-xl">
+                <NavLink to={"/dashboard/newsletter-subscribers"} className="flex items-center text-xl">
                 <MdSettingsApplications class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
                 <span class="ms-3">All Newsletter Subscriber</span>
                 </NavLink>
@@ -92,7 +92,7 @@ const Dashboard = () => {
             </li>
             {/* admin and trainer shared */}
             <li>
-                <NavLink to={"/dashboard/add-new-forum"} className="flex items-center text-xl">
+                <NavLink to={"/dashboard/post-forum"} className="flex items-center text-xl">
                 <MdSettingsApplications class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
                 <span class="ms-3">Add New Forum</span>
                 </NavLink>
@@ -120,7 +120,7 @@ const Dashboard = () => {
                 </NavLink>
           
             <li>
-                <NavLink to={"/dashboard/activity-log"} className="flex items-center text-xl">
+                <NavLink to={"/dashboard/profile"} className="flex items-center text-xl">
                 <MdSettingsApplications class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
                 <span class="ms-3">Profile Page</span>
                 </NavLink>
