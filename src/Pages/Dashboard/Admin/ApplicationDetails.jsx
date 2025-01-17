@@ -95,7 +95,7 @@ const ApplicationDetails = () => {
                 <li class="text-lg text-gray-700 dark:text-gray-400">
                   Available Days
                 </li>
-                {data?.days?.map((items) => {
+                {data?.avaialableSlots?.map((items) => {
                   return (
                     <p class="text-sm text-gray-500 dark:text-gray-400">
                       {items.value}

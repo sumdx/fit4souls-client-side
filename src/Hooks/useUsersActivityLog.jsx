@@ -1,18 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 
 
-const useUsersActivityLog = ({email}) => {
+const useUsersActivityLog = () => {
     const axiosSecure = useAxiosSecure();
-    const {data : activityLog =[]} = useQuery({
-        queryKey :["activityLog"],
+    const {user} = useContext(AuthContext);
+    const {data : activityLogData =[]} = useQuery({
+        queryKey :["activityLogData"],
         queryFn :async () =>{
-            const res = await axiosSecure.get("/activity-log",{
-                email: email,
-              })
+            const res = await axiosSecure.get(`/activity-log/?email=${user.email}`)
+              return res.data;
         }
     })
-    return [];
+    const rejectedData = activityLogData.filter(
+        (item) => item.status === "rejected"
+      );
+      const pendingData = activityLogData.filter(
+        (item) => item.status === "pending"
+      );
+    return [activityLogData,rejectedData,pendingData];
 };
 
 export default useUsersActivityLog;

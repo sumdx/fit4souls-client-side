@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import useUsersActivityLog from "../../../Hooks/useUsersActivityLog";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { NavLink } from "react-router-dom";
 
 const ActivityLog = () => {
-const {user} = useContext(AuthContext);
-const[activityLogData] = useUsersActivityLog(user.email);
+  const [activityLogData,rejectedData,pendingData] = useUsersActivityLog();
+
+  
 
   return (
     <div>
@@ -23,11 +25,6 @@ const[activityLogData] = useUsersActivityLog(user.email);
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="p-4">
-                  <div class="flex items-center">
-                    <p>#</p>
-                  </div>
-                </th>
                 <th scope="col" class="px-6 py-3">
                   Name
                 </th>
@@ -40,42 +37,79 @@ const[activityLogData] = useUsersActivityLog(user.email);
                 </th>
               </tr>
             </thead>
-            {/* <tbody>
-                          {applications.map((data,index) => {
-                            return (
-                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="w-4 p-4">
-                                  <div class="flex items-center">
-                                    {index+1}
-                                  </div>
-                                </td>
-                                <th
-                                  scope="row"
-                                  class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                                >
-                                  <img
-                                    class="w-10 h-10 rounded-full"
-                                    src={data.photoUrl}
-                                    alt="Jese image"
-                                  />
-                                  <div class="ps-3">
-                                    <div class="text-base font-semibold">{data.name}</div>
-                                    <div class="font-normal text-gray-500">
-                                      {data.email}
-                                    </div>
-                                  </div>
-                                </th>
-                                <td class="px-6 py-4">{data.experience}</td>
-                               
-                                <td class="px-6 py-4">
-            
-                                    <NavLink to={`/dashboard/application-details/${data._id}`} class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> View Details</NavLink>
-                                  
-                                </td>
-                              </tr>
-                            );
-                          })}
-                        </tbody> */}
+            <tbody>
+              {pendingData?.map((data, index) => {
+                return (
+                  <tr class="bg-green-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-green-200 dark:hover:bg-green-200">
+                    <th
+                      scope="row"
+                      class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <img
+                        class="w-10 h-10 rounded-full"
+                        src={data.photoUrl}
+                        alt="Jese image"
+                      />
+                      <div class="ps-3">
+                        <div class="text-base font-semibold">{data.name}</div>
+                        <div class="font-normal text-gray-500">
+                          {data.email}
+                        </div>
+                      </div>
+                    </th>
+                    <td class="text-green-700 px-6 py-4">{data.status}</td>
+
+                    <td class="px-6 py-4">
+                      <button disabled className="">View Reason</button>
+                    </td>
+                  </tr>
+                );
+              })}
+              {rejectedData?.map((data, index) => {
+                return (
+                  <tr class="bg-red-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-red-200 dark:hover:bg-gray-600">
+                    <th
+                      scope="row"
+                      class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <img
+                        class="w-10 h-10 rounded-full"
+                        src={data.photoUrl}
+                        alt="Jese image"
+                      />
+                      <div class="ps-3">
+                        <div class="text-base font-semibold">{data.name}</div>
+                        <div class="font-normal text-gray-500">
+                          {data.email}
+                        </div>
+                      </div>
+                    </th>
+                    <td class="text-red-700 px-6 py-4">{data.status}</td>
+
+                    <td class="px-6 py-4">
+                      <button onClick={() =>
+                  document.getElementById(`${data._id}`).showModal()
+                }>View Reason</button>
+                    </td>
+                    <dialog id={data._id} className="modal p-8">
+                      <div className="modal-box">
+                        <h3 className="font-bold text-lg">Rejection Messagee from FitForSoul team</h3>
+                        <p className="my-4 border p-4 rounded-xl">{data.rejectionMessage}</p>
+                      </div>
+                      <form
+                        method="dialog"
+                        className="modal-backdrop text-center space-x-4"
+                      >
+                        
+                        <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          Okay
+                        </button>
+                      </form>
+                    </dialog>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>
