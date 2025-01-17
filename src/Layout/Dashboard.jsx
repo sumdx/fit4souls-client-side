@@ -1,6 +1,6 @@
 import React from "react";
 import { BiSolidDashboard } from "react-icons/bi";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdSettingsApplications } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -43,6 +43,20 @@ const Dashboard = () => {
                 </NavLink>
                 
             </li>
+            <li>
+                <NavLink to={"/dashboard/trainers-applications"} className="flex items-center text-xl">
+                <MdSettingsApplications class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
+                <span class="ms-3">Application</span>
+                </NavLink>
+                
+            </li>
+            <li>
+                <NavLink to={"/dashboard/activity-log"} className="flex items-center text-xl">
+                <MdSettingsApplications class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
+                <span class="ms-3">Activity Log</span>
+                </NavLink>
+                
+            </li>
           </ul>
           <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <NavLink to={"/"} className="flex items-center text-xl">
@@ -71,7 +85,7 @@ const Dashboard = () => {
       </aside>
 
       <div class="p-4 sm:ml-64">
-        <Outlet></Outlet>
+        <Outlet ></Outlet>
       </div>
     </div>
   );

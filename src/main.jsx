@@ -21,6 +21,9 @@ import {
 import TrainerDetails from "./Pages/TrainerDetails.jsx";
 import TrainersApply from "./Pages/TrainersApply.jsx";
 import PrivateRoute from "./Providers/PrivateRoute.jsx";
+import TrainersApplications from "./Pages/Dashboard/Admin/TrainersApplications.jsx";
+import ApplicationDetails from "./Pages/Dashboard/Admin/ApplicationDetails.jsx";
+import ActivityLog from "./Pages/Dashboard/Users/ActivityLog.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -72,6 +75,18 @@ const router = createBrowserRouter([
         path: "dashboard",
         element:<Dashboard></Dashboard>
       },
+      {
+        path : "trainers-applications",
+        element : <TrainersApplications></TrainersApplications>
+      },
+      {
+        path: "application-details/:id",
+        element : <ApplicationDetails></ApplicationDetails>,
+      },
+      {
+        path: "activity-log",
+        element : <ActivityLog></ActivityLog>,
+      }
     ],
   },
 ]);

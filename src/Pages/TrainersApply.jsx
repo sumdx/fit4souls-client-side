@@ -1,11 +1,15 @@
-
 import React, { useContext, useState } from "react";
 import Select from "react-select";
 import { AuthContext } from "../Providers/AuthProvider";
 import { Controller, useForm } from "react-hook-form";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const TrainersApply = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -27,34 +31,53 @@ const TrainersApply = () => {
     { value: "Friday", label: "Friday" },
   ];
 
-
   const onSubmit = (data) => {
     const formData = {
       email: data.email,
-      imageUrl: data.imageUrl,
+      photoUrl: data.photoUrl,
       name: data.name,
       bio: data.bio,
       availableHours: data.availableHours,
       age: data.age,
+      status: "pending",
       experience: data.experience,
-      status : "pending",
       skills: selectedSkills, // Skills will be in an array
-      days: data.days, // Days will be an array of values
+      avaialableSlots: data.days, // Days will be an array of values
     };
-    
-    
 
+    axiosSecure
+      .post("/trainers/apply", formData)
+      .then((res) => {
+        console.log("res",res)
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Application Successfully Submited",
+            icon: "success",
+            confirmButtonText: "Okay",
+          });
+          reset();
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        console.log("error :",err)
+        Swal.fire({
+          title: "Error!",
+          text: "Something Wrong in saving user data in database",
+          icon: "error",
+          confirmButtonText: "Okay",
+        });
+      });
   };
 
-  const handleSkillChange =  (event) => {
+  const handleSkillChange = (event) => {
     const { checked, value } = event.target;
-    
-     setSelectedSkills((prev) =>
+
+    setSelectedSkills((prev) =>
       checked ? [...prev, value] : prev.filter((skill) => skill !== value)
     );
-    
   };
- 
 
   return (
     <div>
@@ -85,16 +108,16 @@ const TrainersApply = () => {
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
-            {...register("imageUrl", { required: "imageUrl is required" })}
-            name="imageUrl"
-            id="imageUrl"
+            {...register("photoUrl", { required: "photoUrl is required" })}
+            name="photoUrl"
+            id="photoUrl"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             defaultValue={user.photoURL}
             required
           />
           <label
-            htmlFor="imageUrl"
+            htmlFor="photoUrl"
             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             Profile Image Url
@@ -151,7 +174,7 @@ const TrainersApply = () => {
             Available hours in a day
           </label>
         </div>
-        
+
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -173,7 +196,9 @@ const TrainersApply = () => {
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="number"
-              {...register("experience", { required: "experience is required" })}
+              {...register("experience", {
+                required: "experience is required",
+              })}
               name="experience"
               id="experience"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -188,7 +213,7 @@ const TrainersApply = () => {
             </label>
           </div>
         </div>
-        
+
         <div className="my-5">
           <p className="font-medium">Skills:</p>
           <label>
@@ -226,14 +251,15 @@ const TrainersApply = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );
 };
 
 export default TrainersApply;
-
 
 // import React, { useContext } from "react";
 // import Select from "react-select";
@@ -299,15 +325,15 @@ export default TrainersApply;
 //         <div class="relative z-0 w-full mb-5 group">
 //           <input
 //             type="text"
-//             name="imageUrl"
-//             id="imageUrl"
+//             name="photoUrl"
+//             id="photoUrl"
 //             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
 //             placeholder=" "
 //             defaultValue={user.photoURL}
 //             required
 //           />
 //           <label
-//             for="imageUrl"
+//             for="photoUrl"
 //             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 //           >
 //             Profile Image Url
@@ -395,7 +421,7 @@ export default TrainersApply;
 //             </label>
 //           </div>
 //         </div>
-        
+
 //         <div>
 //           <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">
 //             Skills
@@ -476,7 +502,7 @@ export default TrainersApply;
 //           className="bg-transparent"
 //           classNamePrefix="select"
 //         />
-        
+
 //       </form>
 //     </div>
 //   );
