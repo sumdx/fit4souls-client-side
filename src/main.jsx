@@ -34,6 +34,8 @@ import AllNewsletterSubscribers from "./Pages/Dashboard/Admin/AllNewsletterSubsc
 import TrainerRoute from "./Providers/TrainerRoute.jsx";
 import AddNewSlot from "./Pages/Dashboard/Trainer/AddNewSlot.jsx";
 import ManageSlot from "./Pages/Dashboard/Trainer/ManageSlot.jsx";
+import AddNewClass from "./Pages/Dashboard/Admin/AddNewClass.jsx";
+import Balance from "./Pages/Dashboard/Admin/Balance.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -88,7 +90,7 @@ const router = createBrowserRouter([
       },
       {
         path : "trainers-applications",
-        element : <TrainersApplications></TrainersApplications>
+        element : <AdminRoute><TrainersApplications></TrainersApplications></AdminRoute>
       },
       {
         path: "application-details/:id",
@@ -98,10 +100,18 @@ const router = createBrowserRouter([
         path: "newsletter-subscribers",
         element : <AdminRoute><AllNewsletterSubscribers></AllNewsletterSubscribers></AdminRoute>
       },
+      {
+        path: "add-new-class",
+        element : <AdminRoute><AddNewClass></AddNewClass></AdminRoute>
+      },
+      {
+        path : "balance",
+        element : <AdminRoute><Balance></Balance></AdminRoute>
+      },
       
       // Trainer routes
       {
-        path : "add-slots",
+        path : "add-new-slot",
         element: <TrainerRoute><AddNewSlot></AddNewSlot></TrainerRoute>
       },
       {
