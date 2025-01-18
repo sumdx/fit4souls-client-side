@@ -1,11 +1,7 @@
 import React from 'react';
 
-const AdminTrainerSharedRoute = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+const AdminTrainerSharedRoute = ({children}) => {
+    return children;
 };
 
 export default AdminTrainerSharedRoute;
