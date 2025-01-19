@@ -26,6 +26,7 @@ const AddNewSlot = () => {
     });
   }, []);
   const onSubmit = (data) => {
+
     const slotInfo = {
       classId: data.class,
       status: "available",
@@ -34,8 +35,7 @@ const AddNewSlot = () => {
       slotTime : data.slotTime,
       slotName: data.slotName,
     };
-    console.log(slotInfo);
-    console.log(data);
+    
     axiosSecure.post(`/slot`, slotInfo).then((res) => {
       Swal.fire({
         title: "Success!",

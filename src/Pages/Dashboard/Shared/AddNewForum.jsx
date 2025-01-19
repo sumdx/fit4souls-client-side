@@ -3,10 +3,14 @@ import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import useAxiosAdmin from '../../../Hooks/useAxiosAdmin';
 import Swal from 'sweetalert2';
+import useGetUserData from '../../../Hooks/useGetUserData';
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddNewForum = () => {
-      
+
+    const [userData, isLoading] = useGetUserData();
+    
+    
     const {
         register,
         handleSubmit,
@@ -15,6 +19,9 @@ const AddNewForum = () => {
       } = useForm();
       const axiosPublic = useAxiosPublic();
     //   const axiosAdmin = useAxiosAdmin();
+    if(isLoading){
+      return <p>Loading</p>
+    }
     
       const onSubmit = async (data) => {
         const imageFile = { image: data.photoUrl[0] };
@@ -30,6 +37,10 @@ const AddNewForum = () => {
             postName: data.postName,
             photoURL: photoUrL,
             postDetails: data.postDetails,
+            userName : userData?.name,
+            userRole : userData?.role,
+            userPhoto :userData?.photoURL,
+            userEmail : userData?.email
           };
         
           axiosPublic

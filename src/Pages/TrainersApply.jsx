@@ -33,6 +33,15 @@ const TrainersApply = () => {
   ];
 
   const onSubmit = (data) => {
+    const availability = data.days.map((dayObj) => {
+      return {
+        day: dayObj.value, // Get the day value from the selected days array
+        availableTime: data.availableHours, // Set availableTime to the number of hours entered in the form
+        remainingTime: data.availableHours, // Initially, remaining time is the same as available time
+      };
+    });
+    //console.log(availability);
+    
     const formData = {
       email: data.email,
       photoUrl: data.photoUrl,
@@ -42,8 +51,9 @@ const TrainersApply = () => {
       age: data.age,
       status: "pending",
       experience: data.experience,
-      skills: selectedSkills, // Skills will be in an array
-      avaialableSlots: data.days, // Days will be an array of values
+      skills: selectedSkills, 
+      avaialableSlots: data.days, 
+      availability,
     };
 
     axiosSecure
