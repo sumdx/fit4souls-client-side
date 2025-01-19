@@ -2,48 +2,78 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAllClasses from "../../../Hooks/useAllClasses";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, set, useForm } from "react-hook-form";
 import Select from "react-select";
 import Swal from "sweetalert2";
+import useTrainerDataByEmail from "../../../Hooks/useTrainerDataByEmail";
 
 const AddNewSlot = () => {
   const { user } = useContext(AuthContext);
-  const [trainerData, setTrainerData] = useState({});
+  const [trainerData, refetchTrainer] = useTrainerDataByEmail();
   const [allClassesData] = useAllClasses();
+  const [availableTime, setAvailableTime] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
     reset,
     setValue,
+    watch,
     control,
     formState: { errors },
   } = useForm();
 
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
+  // useEffect(() => {
+  //   axiosSecure.get(`/trainer/${user?.email}`).then((res) => {
+  //     setTrainerData(res.data);
+  //   });
+  // }, []);
   useEffect(() => {
-    axiosSecure.get(`/trainer/${user?.email}`).then((res) => {
-      setTrainerData(res.data);
-    });
-  }, []);
-  const onSubmit = (data) => {
+    if (user?.email) {
+      refetchTrainer();
+    }
+  }, [user?.email, refetchTrainer]);
+  const handleDayChange = (e) => {
+    if (e.target.value) {
+      trainerData.availability.map((days) => {
+        if (days.day === e.target.value) {
+          setSelectedDay(e.target.value);
+          setAvailableTime(parseInt(days.remainingTime));
+        }
+      });
+    } else {
+      setSelectedDay("");
+      setAvailableTime(0);
+    }
+  };
 
+  const onSubmit = (data) => {
     const slotInfo = {
       classId: data.class,
       status: "available",
       trainerEmail: user.email,
-      day: data.days[0].value,
-      slotTime : data.slotTime,
+      //day: data.days[0].value,
+      day: selectedDay,
+      duration: data.slotTime,
       slotName: data.slotName,
     };
-    
+    console.log(slotInfo);
     axiosSecure.post(`/slot`, slotInfo).then((res) => {
+      console.log(res)
       Swal.fire({
         title: "Success!",
         text: "Trainers Added Successfully",
         icon: "success",
         confirmButtonText: "Okay",
       });
+      
       reset();
+      refetchTrainer();
+    })
+    .catch(e =>{
+      console.log(e);
     });
   };
 
@@ -52,91 +82,129 @@ const AddNewSlot = () => {
       <div>
         <div className="flex flex-col justify-center items-center text-center mb-16">
           <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Application Details
+            Create Slot
           </h1>
           <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
             We have experienced trainers to make your training journey smooth.
           </p>
         </div>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} action="">
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="text"
-            {...register("slotName", {
-              required: "Hours is required",
-            })}
-            name="slotName"
-            id="slotName"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            htmlFor="slotName"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Slot Name
-          </label>
-          {errors.number && <p>{errors.number.message}</p>}
-        </div>
-
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="number"
-            {...register("slotTime", {
-              required: "Hours is required",
-              max: {
-                value: 7, // Maximum allowed value
-                message: "Value cannot exceed 10",
-              },
-            })}
-            name="slotTime"
-            id="slotTime"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            htmlFor="slotTime"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Slot Time
-          </label>
-          {errors.number && <p>{errors.number.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="classDropdown">Select a Class: </label>
-          <select {...register("class", { required: true })} id="classDropdown">
-            <option value="">Select a Class</option>
-            {allClassesData.map((classItem) => (
-              <option key={classItem._id} value={classItem._id}>
-                {classItem.className}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="mb-5">
-          <p className="font-medium">Available Days:</p>
-          <Controller
-            name="days"
-            control={control}
-            defaultValue={[]}
-            render={({ field }) => (
-              <Select
-                {...field}
-                isMulti
-                options={trainerData?.avaialableSlots}
-                placeholder="Select available days"
-              />
+      <div className="w-3/4 mx-auto flex flex-col gap-6">
+        <form onSubmit={handleSubmit(onSubmit)} action="">
+          {/* Slot Name */}
+          <div>
+            <label
+              for="small-input"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Slot Name
+            </label>
+            <input
+              {...register("slotName", {
+                required: "Name is required",
+                
+              })}
+              type="text"
+              id="small-input"
+              class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            {errors.slotName && (
+              <p style={{ color: "red" }}>{errors.slotName.message}</p>
             )}
-          />
-          <button type="submit" className="btn btn-primary">
+          </div>
+          {/* Select Days
+          <div className="my-5">
+            <p className="font-medium">Select Day :</p>
+            <Controller
+              name="days"
+              control={control}
+              defaultValue={[]}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={trainerData?.avaialableSlots}
+                  placeholder="Select available days"
+                />
+              )}
+            />
+          </div> */}
+
+          <div className="flex flex-col my-6 gap-6">
+            <div className="mt-4">
+              <label htmlFor="classDropdown">Select a Class: </label>
+              <select
+                {...register("class", { required: true })}
+                id="classDropdown"
+              >
+                <option value="">Select a Class</option>
+                {allClassesData.map((classItem) => (
+                  <option key={classItem._id} value={classItem._id}>
+                    {classItem.className}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mt-4">
+              <label htmlFor="classDropdown">Select a Day: </label>
+              <select
+                onChange={handleDayChange}
+                //{...register("days", { required: true })}
+                id="classDropdown"
+                name="day"
+                defaultValue={"default"}
+              >
+                <option value="" name="default">
+                  Select a Day
+                </option>
+                {trainerData?.availability?.map((days, index) => (
+                  <option key={index} value={days.day}>
+                    {days.day}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Select Time */}
+          <div>
+            <label
+              for="small-input"
+              class="block my-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Slot Duration{" "}
+              {selectedDay && (
+                <p>
+                  (Your Available time for {selectedDay} is {availableTime}{" "}
+                  Hourse)
+                </p>
+              )}
+            </label>
+            <input
+              type="number"
+              {...register("slotTime", {
+                required: "Duration is required",
+                max: {
+                  value: availableTime , // Maximum allowed value
+                  message: `Value cannot exceed ${availableTime}`,
+                },
+              })}
+              id="small-input"
+              class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            {errors.slotTime && (
+              <p style={{ color: "red" }}>{errors.slotTime.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            class="mt-4 text-center mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
             Submit
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,57 @@
+{
+    "_id": {
+      "$oid": "678cdc7161579bbc2febbc68"
+    },
+    "age": "32",
+    "avaialableSlots": [
+      {
+        "value": "Sunday",
+        "label": "Sunday"
+      },
+      {
+        "value": "Saturday",
+        "label": "Saturday"
+      },
+      {
+        "value": "Tuesday",
+        "label": "Tuesday"
+      },
+      {
+        "value": "Wednesday",
+        "label": "Wednesday"
+      }
+    ],
+    "availability": [
+      {
+        "day": "Sunday",
+        "availableTime": "7",
+        "remainingTime": "7"
+      },
+      {
+        "day": "Saturday",
+        "availableTime": "7",
+        "remainingTime": "7"
+      },
+      {
+        "day": "Tuesday",
+        "availableTime": "7",
+        "remainingTime": "7"
+      },
+      {
+        "day": "Wednesday",
+        "availableTime": "7",
+        "remainingTime": "7"
+      }
+    ],
+    "availableHours": "7",
+    "bio": "KAKA is always kaka bu tnot kaka is not kaka",
+    "email": "kaka@kaki.com",
+    "experience": "4",
+    "name": "Sumnath Das Biraz",
+    "photoUrl": "https://i.ibb.co/0Zwjz3h/arches-1850730-1280.jpg",
+    "skills": [
+      "Web Development",
+      "Mobile App Development"
+    ],
+    "status": "pending"
+  }
