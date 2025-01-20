@@ -90,13 +90,13 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       // admin routes
       {
         path: "dashboard",
-        element:<Dashboard></Dashboard>
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
       },
       {
         path : "trainers-applications",
