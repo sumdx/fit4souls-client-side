@@ -5,14 +5,14 @@ import useAxiosSecure from "./useAxiosSecure";
 const useTrainerDetails = ({id}) => {
     const axiosSecure = useAxiosSecure();
 
-    const {data : trainer =[]} = useQuery({
-        queryKey : ["trainer"],
+    const {isLoading, isFetching, data : trainer ={}} = useQuery({
+        queryKey : ["trainer",id],
         queryFn : async () =>{
             const res = await axiosSecure.get(`/trainers/${id}`)
             return res.data;
         }
     })
-    return [trainer];
+    return [trainer,isLoading,isFetching];
 };
 
 export default useTrainerDetails;

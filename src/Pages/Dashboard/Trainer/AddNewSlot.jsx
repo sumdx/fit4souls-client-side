@@ -50,12 +50,16 @@ const AddNewSlot = () => {
   };
 
   const onSubmit = (data) => {
+    const selectedClass = allClassesData.find(
+      (classItem) => classItem._id === data.class
+    );
     const slotInfo = {
       classId: data.class,
       status: "available",
       trainerEmail: user.email,
       //day: data.days[0].value,
       day: selectedDay,
+      className: selectedClass.className,
       duration: data.slotTime,
       slotName: data.slotName,
     };

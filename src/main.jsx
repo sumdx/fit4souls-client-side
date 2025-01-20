@@ -36,6 +36,7 @@ import AddNewSlot from "./Pages/Dashboard/Trainer/AddNewSlot.jsx";
 import ManageSlot from "./Pages/Dashboard/Trainer/ManageSlot.jsx";
 import AddNewClass from "./Pages/Dashboard/Admin/AddNewClass.jsx";
 import Balance from "./Pages/Dashboard/Admin/Balance.jsx";
+import TrainerBook from "./Pages/TrainerBook.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path : "/trainers/apply",
         element : <PrivateRoute><TrainersApply></TrainersApply></PrivateRoute>
+      },
+      {
+        path : "/trainer-book/:id",
+        element : <PrivateRoute><TrainerBook></TrainerBook></PrivateRoute>
       }
     ],
   },
