@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSlotDetailsById from "../Hooks/useSlotDetailsById";
 import useTrainerDetailsByEmail from "../Hooks/useTrainerDetailsByEmail";
 import AuthProvider, { AuthContext } from "../Providers/AuthProvider";
@@ -11,6 +11,7 @@ const TrainerBook = () => {
   const [trainerByEmail, refetch] = useTrainerDetailsByEmail(
     indSlotData[0]?.trainerEmail
   );
+  const navigate = useNavigate();
   const inBookingData = {
     trainerName: trainerByEmail.name,
     trainerPhotoUrl: trainerByEmail.photoUrl,
@@ -27,9 +28,12 @@ const TrainerBook = () => {
         packageName : "Basic Membership",
         packagePrice : 10
     }
-    setBookingData({...inBookingData,pricingInfo})
-    console.log(bookingData)
-
+    const fullBookingData = { ...inBookingData, pricingInfo };
+    setBookingData(fullBookingData)
+    localStorage.setItem("bookingData", JSON.stringify(fullBookingData));
+    console.log(bookingData);
+    navigate("/payment");
+    
   }
 
   return (
