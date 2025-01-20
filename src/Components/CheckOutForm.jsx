@@ -95,6 +95,7 @@ const CheckOutForm = () => {
                         trxId : paymentIntent.id,
 
                       }
+                      const finalBookingData = {...bookingInfo,paymentInfo};
                       
 
                       axiosSecure.post("/booking-confirm",finalBookingData)

@@ -12,10 +12,14 @@ const TrainerBook = () => {
     indSlotData[0]?.trainerEmail
   );
   const navigate = useNavigate();
+  
+  console.log("slotDFtaa",indSlotData)
   const inBookingData = {
     trainerName: trainerByEmail.name,
     trainerPhotoUrl: trainerByEmail.photoUrl,
     slotName: indSlotData[0]?.slotName,
+    classId : indSlotData[0]?.classId,
+    slotId : indSlotData[0]?._id,
     user: {
       name: user.displayName,
       email: user.email,
