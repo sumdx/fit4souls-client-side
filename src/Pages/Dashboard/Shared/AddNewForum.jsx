@@ -40,7 +40,9 @@ const AddNewForum = () => {
             userName : userData?.name,
             userRole : userData?.role,
             userPhoto :userData?.photoURL,
-            userEmail : userData?.email
+            userEmail : userData?.email,
+            upVote: [],
+            downVote: [],
           };
         
           axiosPublic
