@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import GoogleLogin from "../Components/GoogleLogin";
 
 const Login = () => {
   const { user, signInUser, signInUserWithGoogle } = useContext(AuthContext);
@@ -27,13 +28,7 @@ const Login = () => {
       .catch((err) => {});
   };
 
-  const googleSignInHandle = () => {
-    signInUserWithGoogle()
-      .then((res) => {
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {});
-  };
+
 
   return (
     <div>
@@ -121,13 +116,7 @@ const Login = () => {
                   Login to your account
                 </button>
               </form>
-              <button
-                onClick={googleSignInHandle}
-                className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white"
-              >
-                <FaGoogle></FaGoogle>
-                Sign in with Google
-              </button>
+              <GoogleLogin></GoogleLogin>
               <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
                 Not registered yet?{" "}
                 <NavLink to={"/signup"}>

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useAllComunityPost = (currentPage, itemPerPage) => {
     const axiosPublic = useAxiosPublic();
-    const {refetch,data : allForumsData = []} = useQuery({
+    const {refetch,data, isFetching } = useQuery({
 
         queryKey : ['allForumsData',currentPage, itemPerPage],
         queryFn : async () =>{
@@ -14,8 +14,9 @@ const useAllComunityPost = (currentPage, itemPerPage) => {
         }
 
     })
-
-    return [allForumsData,refetch];
+    const allForumsData = data?.data || [];
+    const totalCount = data?.totalCount || 0;
+    return [allForumsData,refetch,totalCount,isFetching];
 };
 
 export default useAllComunityPost;

@@ -7,6 +7,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.init";
 import Swal from "sweetalert2";
+import GoogleLogin from "../Components/GoogleLogin";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -263,12 +264,9 @@ const SignUp = () => {
                 >
                   Login to your account
                 </button>
-                <button className="w-full px-5 py-3 flex items-center gap-2 text-base font-medium justify-center rounded-xl text-center text-blue-700 border border-blue-700 focus:ring-4 focus:ring-blue-300  hover:bg-blue-800 hover:text-white">
-                  <FaGoogle></FaGoogle>
-                  Sign in with Google
-                </button>
-
-                <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
+              </form>
+              <GoogleLogin></GoogleLogin>
+              <div class="text-sm font-medium text-gray-900 dark:text-white flex space-y-2">
                   Allready a member ?{" "}
                   <NavLink to={"/login"}>
                     <p class="ml-2 text-blue-600 hover:underline dark:text-blue-500">
@@ -276,7 +274,6 @@ const SignUp = () => {
                     </p>
                   </NavLink>
                 </div>
-              </form>
             </div>
           </div>
         </div>
