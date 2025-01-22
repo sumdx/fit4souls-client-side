@@ -37,6 +37,7 @@ import TrainerBook from "./Pages/TrainerBook.jsx";
 import Payment from "./Pages/Payment.jsx";
 import AllTrainerEdit from "./Pages/Dashboard/Admin/AllTrainerEdit.jsx";
 import { HelmetProvider } from "react-helmet-async";
+import DashHome from "./Providers/DashHome.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -110,8 +111,8 @@ const router = createBrowserRouter([
     children: [
       // admin routes
       {
-        path: "dashboard",
-        element:<PrivateRoute><Balance></Balance></PrivateRoute>
+        path: "",
+        element:<PrivateRoute><DashHome><Balance></Balance></DashHome></PrivateRoute>
       },
       {
         path: "trainers-applications",
