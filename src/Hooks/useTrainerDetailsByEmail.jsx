@@ -4,7 +4,7 @@ import useAxiosSecure from './useAxiosSecure';
 
 const useTrainerDetailsByEmail = (email) => {
     const axiosSecure = useAxiosSecure();
-    console.log(email)
+
     const {isLoading, refetch, data : trainerByEmail ={}} = useQuery({
         queryKey : ["trainerByEmail",email],
         queryFn : async () =>{

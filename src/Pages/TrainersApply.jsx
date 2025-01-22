@@ -40,7 +40,7 @@ const TrainersApply = () => {
         remainingTime: data.availableHours, // Initially, remaining time is the same as available time
       };
     });
-    //console.log(availability);
+ 
     
     const formData = {
       email: data.email,
@@ -59,7 +59,7 @@ const TrainersApply = () => {
     axiosSecure
       .post("/trainers/apply", formData)
       .then((res) => {
-        console.log("res", res);
+
         if (res.data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -72,7 +72,7 @@ const TrainersApply = () => {
         }
       })
       .catch((err) => {
-        console.log("error :", err);
+
         Swal.fire({
           title: "Error!",
           text: "Something Wrong in saving user data in database",
@@ -94,7 +94,7 @@ const TrainersApply = () => {
   const pendingData = activityLogData.filter(
     (item) => item.status.includes("pending")
   );
-  console.log(pendingData)
+
 
   return (
     <div>

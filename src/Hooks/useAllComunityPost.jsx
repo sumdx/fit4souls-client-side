@@ -9,7 +9,7 @@ const useAllComunityPost = (currentPage, itemPerPage) => {
         queryKey : ['allForumsData',currentPage, itemPerPage],
         queryFn : async () =>{
             const res = await axiosPublic.get(`/forum/?page=${currentPage}&size=${itemPerPage}`)
-            console.log(res)
+
             return res.data;
         }
 

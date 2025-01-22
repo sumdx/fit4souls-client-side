@@ -63,9 +63,9 @@ const AddNewSlot = () => {
       duration: data.slotTime,
       slotName: data.slotName,
     };
-    console.log(slotInfo);
+
     axiosSecure.post(`/slot`, slotInfo).then((res) => {
-      console.log(res)
+
       Swal.fire({
         title: "Success!",
         text: "Trainers Added Successfully",
@@ -77,7 +77,7 @@ const AddNewSlot = () => {
       refetchTrainer();
     })
     .catch(e =>{
-      console.log(e);
+
     });
   };
 

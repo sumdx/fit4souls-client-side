@@ -4,6 +4,7 @@ import useTrainerDetails from "../Hooks/useTrainerDetails";
 import useAllSlotsByEmail from "../Hooks/useAllSlotsByEmail";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import Loading from "../Components/Loading";
 
 const TrainerDetails = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const TrainerDetails = () => {
   const [trainer, isLoading, isFetching] = useTrainerDetails({ id });
   const [slotData, setSlotData] = useState();
   const [trainerSlotByEmail] = useAllSlotsByEmail(trainer?.email);
-  console.log(trainer.email,trainerSlotByEmail);
+
 
   
   useEffect(() => {
@@ -29,29 +30,9 @@ const TrainerDetails = () => {
   }, [trainer?.email, axiosPublic]); 
 
   if (isLoading) {
-    return <p>Loading ....</p>;
+    return <Loading></Loading>;
   }
 
-  //console.log(slotData);
-
-  // if(isLoading){
-  //   return <p>Loading ....</p>
-  // }
-  // const {data} = useQuery({
-  //   queryKey:["slotDataPublic"],
-  //   queryFn : async () =>{
-  //     const res =axiosPublic.get(`/slots/${trainer.email}`)
-  //   }
-  // })
-
-  //   axiosPublic.get(`/slots/${trainer.email}`)
-  //   .then(res=>{
-  //     setSlotData(res.data);
-  //   })
-  //   .catch(err=>{
-
-  //   })
-  // console.log(data)
 
   return (
     <div className="max-w-screen-xl mx-auto mt-20">

@@ -38,6 +38,7 @@ import AddNewClass from "./Pages/Dashboard/Admin/AddNewClass.jsx";
 import Balance from "./Pages/Dashboard/Admin/Balance.jsx";
 import TrainerBook from "./Pages/TrainerBook.jsx";
 import Payment from "./Pages/Payment.jsx";
+import AllTrainerEdit from "./Pages/Dashboard/Admin/AllTrainerEdit.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -147,6 +148,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: "all-trainers",
+        element: <AdminRoute><AllTrainerEdit></AllTrainerEdit></AdminRoute>
       }
     ],
   },

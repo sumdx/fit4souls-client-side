@@ -17,7 +17,7 @@ const AddNewClass = () => {
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.photoUrl[0] };
-    console.log(imageFile);
+
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",

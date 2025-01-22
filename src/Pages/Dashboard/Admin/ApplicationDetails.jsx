@@ -41,7 +41,7 @@ const ApplicationDetails = () => {
   };
 
   const handleReject = () => {
-    console.log(message);
+ 
     axiosAdmin.patch(`/trainers/reject/${data._id}`,{message})
     .then((res)=>{
       Swal.fire({

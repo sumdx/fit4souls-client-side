@@ -13,7 +13,7 @@ const TrainerBook = () => {
   );
   const navigate = useNavigate();
   
-  console.log("slotDFtaa",indSlotData)
+
   const inBookingData = {
     trainerName: trainerByEmail.name,
     trainerPhotoUrl: trainerByEmail.photoUrl,
@@ -35,7 +35,7 @@ const TrainerBook = () => {
     const fullBookingData = { ...inBookingData, pricingInfo };
     setBookingData(fullBookingData)
     localStorage.setItem("bookingData", JSON.stringify(fullBookingData));
-    console.log(bookingData);
+
     navigate("/payment");
     
   }

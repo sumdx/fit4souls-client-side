@@ -26,7 +26,7 @@ const CheckOutForm = () => {
     navigate("/");
   }
 
-  console.log(bookingInfo);
+  
 
   useEffect(() => {
     axiosSecure
@@ -34,7 +34,7 @@ const CheckOutForm = () => {
         price: bookingInfo?.pricingInfo.packagePrice,
       })
       .then((res) => {
-        console.log(res.data.clientSecret);
+       
         setClientSecret(res.data.clientSecret);
       });
   }, [axiosSecure, bookingInfo.pricingInfo.packagePrice]);
@@ -56,10 +56,10 @@ const CheckOutForm = () => {
       card,
     });
     if (error) {
-      console.log("payment error", error);
+  
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
+
       setError("");
     }
     Swal.fire({
@@ -82,9 +82,9 @@ const CheckOutForm = () => {
                 }
             })
             if(confirmError){
-                console.log(confirmError);
+
             }else{
-                console.log("Payment Intent" , paymentIntent)
+
                 if(paymentIntent.status === 'succeeded'){
                     Swal.fire({
                         title: "Payment Successfull!",

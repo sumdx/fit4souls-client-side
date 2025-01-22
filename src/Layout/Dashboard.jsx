@@ -53,6 +53,12 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
+                  <NavLink to={"/dashboard/all-trainers"}  className="flex items-center text-xl">
+                    <BiSolidDashboard class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <span class="ms-3">All Trainers Data</span>
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink
                     to={"/dashboard/newsletter-subscribers"}
                     className="flex items-center text-xl"

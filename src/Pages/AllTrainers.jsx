@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const AllTrainers = () => {
   const [allTrainersData] = useAllTrainers();
-  console.log(allTrainersData);
+
 
   return (
     <div>
