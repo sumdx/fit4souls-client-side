@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet-async';
 
 const stripePayment = loadStripe(import.meta.env.VITE_PAYMENT_PK);
 const Payment = () => {
+    const storedBookingData = JSON.parse(localStorage.getItem("bookingData"));
+    console.log(storedBookingData)
     return (
         <div>
             <Helmet>
@@ -16,7 +18,9 @@ const Payment = () => {
           <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             Checkout
           </h1>
-          
+          <div>
+            <h1 className='text-2xl font-bold mt-6'>Amount : USD  ${storedBookingData?.pricingInfo?.packagePrice}</h1>
+          </div>
         </div>
       </div>
             

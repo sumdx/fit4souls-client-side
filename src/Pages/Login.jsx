@@ -6,6 +6,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import GoogleLogin from "../Components/GoogleLogin";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { user, signInUser, signInUserWithGoogle } = useContext(AuthContext);
@@ -28,7 +29,14 @@ const Login = () => {
       .then((res) => {
         navigate(from, { replace: true });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        Swal.fire({
+                            title: "Error!",
+                            text: "Something Wrong in authentication",
+                            icon: "error",
+                            confirmButtonText: "Okay",
+                          });
+      });
   };
 
 
