@@ -7,7 +7,7 @@ const useGetUserData = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useContext(AuthContext);
     
-        const {data: userData=[], isLoading} = useQuery({
+        const {data: userData=[], isLoading, isFetching, refetch} = useQuery({
             queryKey : ['userData',user?.email],
             queryFn: async () =>{
                 if (!user?.email) return [];
@@ -16,7 +16,7 @@ const useGetUserData = () => {
             },
             enabled: !!user?.email,
         })
-        return [userData,isLoading];
+        return [userData,isLoading,refetch, isFetching];
 };
 
 export default useGetUserData;

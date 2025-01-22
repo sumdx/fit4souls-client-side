@@ -91,11 +91,12 @@ const AllClasses = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto mt-14 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container mx-auto mt-14 gap-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {allCustomClassData?.map((classData) => {
           return <ClassesCard classData={classData}></ClassesCard>;
         })}
       </div>
+      <div className="flex justify-center mt-6">
       <nav aria-label="Page navigation example">
         <ul class="flex items-center -space-x-px h-10 text-base">
           {/* prev button */}
@@ -171,6 +172,8 @@ const AllClasses = () => {
           </li>
         </ul>
       </nav>
+      </div>
+      
     </div>
   );
 };

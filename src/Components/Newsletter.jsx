@@ -43,14 +43,14 @@ const Newsletter = () => {
       <section class="bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
           <a
-            href="#"
+            
             class="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800"
           >
             <span class="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">
-              New
+              Forum
             </span>{" "}
             <span class="text-sm font-medium">
-              Jumbotron component was launched! See what's new
+             CheckOut our forum page
             </span>
             <svg
               class="w-2.5 h-2.5 ms-2 rtl:rotate-180"
@@ -72,8 +72,7 @@ const Newsletter = () => {
             Newsletter
           </h1>
           <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
+           You can drop your name and email here so, we can notify you when we got some exciting offers for you. You will get special 10% discount on the purchase if you subscribe.
           </p>
           {/* form */}
           <form onSubmit={handleSubmit} class="w-full max-w-md mx-auto">

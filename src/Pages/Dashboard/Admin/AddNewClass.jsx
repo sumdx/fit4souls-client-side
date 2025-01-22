@@ -29,6 +29,7 @@ const AddNewClass = () => {
         className: data.className,
         photoURL: photoUrL,
         classDetails: data.classDetails,
+        bookedBy:[]
       };
       axiosAdmin
         .post("/classes", classInfo)
