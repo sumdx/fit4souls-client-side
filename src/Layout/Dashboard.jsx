@@ -5,6 +5,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useTrainer from "../Hooks/useTrainer";
 import { AuthContext } from "../Providers/AuthProvider";
+import Balance from "../Pages/Dashboard/Admin/Balance";
 
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();

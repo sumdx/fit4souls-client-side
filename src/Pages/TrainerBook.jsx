@@ -39,6 +39,30 @@ const TrainerBook = () => {
     navigate("/payment");
     
   }
+  const premiumHandle = () =>{
+    const pricingInfo = {
+        packageName : "Premium Membership",
+        packagePrice : 99
+    }
+    const fullBookingData = { ...inBookingData, pricingInfo };
+    setBookingData(fullBookingData)
+    localStorage.setItem("bookingData", JSON.stringify(fullBookingData));
+
+    navigate("/payment");
+    
+  }
+  const standardHandle = () =>{
+    const pricingInfo = {
+        packageName : "Standard Membership",
+        packagePrice : 49
+    }
+    const fullBookingData = { ...inBookingData, pricingInfo };
+    setBookingData(fullBookingData)
+    localStorage.setItem("bookingData", JSON.stringify(fullBookingData));
+
+    navigate("/payment");
+    
+  }
 
   return (
     <div className="text-center">
@@ -202,6 +226,7 @@ const TrainerBook = () => {
                 </li>
               </ul>
               <button
+              onClick={premiumHandle}
                 type="button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
               >
@@ -268,6 +293,7 @@ const TrainerBook = () => {
                 </li>
               </ul>
               <button
+              onClick={standardHandle}
                 type="button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
               >

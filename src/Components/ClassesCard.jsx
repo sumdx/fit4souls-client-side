@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const ClassesCard = ({ classData }) => {
   return (
@@ -16,7 +17,31 @@ const ClassesCard = ({ classData }) => {
           <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
             {classData.classDetails} years of experience.
           </p>
-        
+          {classData.trainers?.map((data, index) => {
+            console.log(index);
+            if (index < 5) {
+              return (
+                <NavLink  to={`/trainers/${data.trainerId}`} className="relative group inline-block">
+                {/* Image */}
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={data.trainerPhotoUrl}
+                  alt="Rounded avatar"
+                />
+          
+                {/* Tooltip */}
+                <div
+                  className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex
+                             items-center justify-center px-3 py-2 text-sm font-medium text-white 
+                             bg-gray-800 rounded-lg shadow-lg dark:bg-gray-700"
+                >
+                  {data.trainerName}
+                  
+                </div>
+              </NavLink>
+              );
+            }
+          })}
         </div>
       </div>
     </div>

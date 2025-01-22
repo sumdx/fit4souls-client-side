@@ -12,15 +12,16 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   
-  if (user) {
-    return navigate("/");
-  }
+ 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+  if (user) {
+    return navigate("/");
+  }
   const onSubmit = (data) => {
     signInUser(data.email, data.password)
       .then((res) => {

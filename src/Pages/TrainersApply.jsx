@@ -237,23 +237,47 @@ const TrainersApply = () => {
             </div>
           </div>
 
-          <div className="my-5">
+          <div className="my-5 ">
             <p className="font-medium">Skills:</p>
-            <label>
+            <label className="mr-2">
               <input
                 type="checkbox"
-                value="Web Development"
+                value="Strength Training"
                 onChange={handleSkillChange}
               />
-              Web Development
+              Strength Training
             </label>
-            <label>
+            <label className="mr-2">
               <input
                 type="checkbox"
-                value="Mobile App Development"
+                value="Yoga"
                 onChange={handleSkillChange}
               />
-              Mobile App Development
+              Yoga
+            </label>
+            <label className="mr-2">
+              <input
+                type="checkbox"
+                value="Zumba"
+                onChange={handleSkillChange}
+              />
+              Zumba
+            </label>
+            <label className="mr-2">
+              <input
+                type="checkbox"
+                value="Aerobics"
+                onChange={handleSkillChange}
+              />
+              Aerobics
+            </label>
+            <label className="mr-2">
+              <input
+                type="checkbox"
+                value="Cardiovascular Training"
+                onChange={handleSkillChange}
+              />
+              Cardiovascular Training
             </label>
           </div>
 

@@ -57,6 +57,8 @@ const AddNewSlot = () => {
       classId: data.class,
       status: "available",
       trainerEmail: user.email,
+      trainerName : user.displayName,
+      trainerPhotoUrl : user.photoURL,
       //day: data.days[0].value,
       day: selectedDay,
       className: selectedClass.className,
@@ -116,22 +118,7 @@ const AddNewSlot = () => {
               <p style={{ color: "red" }}>{errors.slotName.message}</p>
             )}
           </div>
-          {/* Select Days
-          <div className="my-5">
-            <p className="font-medium">Select Day :</p>
-            <Controller
-              name="days"
-              control={control}
-              defaultValue={[]}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={trainerData?.avaialableSlots}
-                  placeholder="Select available days"
-                />
-              )}
-            />
-          </div> */}
+    
 
           <div className="flex flex-col my-6 gap-6">
             <div className="mt-4">

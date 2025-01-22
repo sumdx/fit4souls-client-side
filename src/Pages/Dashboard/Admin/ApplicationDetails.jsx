@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useTrainerApplications from "../../../Hooks/useTrainerApplications";
 import useAxiosAdmin from "../../../Hooks/useAxiosAdmin";
 import Swal from "sweetalert2";
@@ -10,6 +10,7 @@ const ApplicationDetails = () => {
   const [message, setMessage] = useState("");
   const { id } = useParams();
   const axiosAdmin = useAxiosAdmin();
+  const navigate = useNavigate();
 
   const [applications] = useTrainerApplications();
   
@@ -25,7 +26,8 @@ const ApplicationDetails = () => {
           icon: "success",
           confirmButtonText: "Okay",
         });
-        <Navigate to={"/dashboard/trainers-applications"}></Navigate>;
+        navigate("/dashboard/trainers-applications");
+        
       })
       .catch((err) => {
         Swal.fire({
