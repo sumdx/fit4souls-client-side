@@ -14,10 +14,7 @@ import AllTrainers from "./Pages/AllTrainers.jsx";
 import AllClasses from "./Pages/AllClasses.jsx";
 import Community from "./Pages/Community.jsx";
 
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import TrainerDetails from "./Pages/TrainerDetails.jsx";
 import TrainersApply from "./Pages/TrainersApply.jsx";
 import PrivateRoute from "./Providers/PrivateRoute.jsx";
@@ -39,6 +36,7 @@ import Balance from "./Pages/Dashboard/Admin/Balance.jsx";
 import TrainerBook from "./Pages/TrainerBook.jsx";
 import Payment from "./Pages/Payment.jsx";
 import AllTrainerEdit from "./Pages/Dashboard/Admin/AllTrainerEdit.jsx";
+import { HelmetProvider } from "react-helmet-async";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -72,97 +70,163 @@ const router = createBrowserRouter([
         element: <Community></Community>,
       },
       {
-        path : "/trainers/:id",
-        element : <TrainerDetails></TrainerDetails>
+        path: "/trainers/:id",
+        element: <TrainerDetails></TrainerDetails>,
       },
       {
-        path : "/trainers/apply",
-        element : <PrivateRoute><TrainersApply></TrainersApply></PrivateRoute>
+        path: "/trainers/apply",
+        element: (
+          <PrivateRoute>
+            <TrainersApply></TrainersApply>
+          </PrivateRoute>
+        ),
       },
       {
-        path : "/trainer-book/:id",
-        element : <PrivateRoute><TrainerBook></TrainerBook></PrivateRoute>
+        path: "/trainer-book/:id",
+        element: (
+          <PrivateRoute>
+            <TrainerBook></TrainerBook>
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/payment",
-        element :<PrivateRoute><Payment></Payment></PrivateRoute>
-      }
+        path: "/payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
     path: "dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       // admin routes
-      // {
-      //   path: "dashboard",
-      //   element:<PrivateRoute><Balance></Balance></PrivateRoute>
-      // },
       {
-        path : "trainers-applications",
-        element : <AdminRoute><TrainersApplications></TrainersApplications></AdminRoute>
+        path: "dashboard",
+        element:<PrivateRoute><Balance></Balance></PrivateRoute>
+      },
+      {
+        path: "trainers-applications",
+        element: (
+          <AdminRoute>
+            <TrainersApplications></TrainersApplications>
+          </AdminRoute>
+        ),
       },
       {
         path: "application-details/:id",
-        element : <AdminRoute><ApplicationDetails></ApplicationDetails> </AdminRoute> ,
+        element: (
+          <AdminRoute>
+            <ApplicationDetails></ApplicationDetails>{" "}
+          </AdminRoute>
+        ),
       },
       {
         path: "newsletter-subscribers",
-        element : <AdminRoute><AllNewsletterSubscribers></AllNewsletterSubscribers></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AllNewsletterSubscribers></AllNewsletterSubscribers>
+          </AdminRoute>
+        ),
       },
       {
         path: "add-new-class",
-        element : <AdminRoute><AddNewClass></AddNewClass></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AddNewClass></AddNewClass>
+          </AdminRoute>
+        ),
       },
       {
-        path : "balance",
-        element : <AdminRoute><Balance></Balance></AdminRoute>
+        path: "balance",
+        element: (
+          <AdminRoute>
+            <Balance></Balance>
+          </AdminRoute>
+        ),
       },
-      
+
       // Trainer routes
       {
-        path : "add-new-slot",
-        element: <TrainerRoute><AddNewSlot></AddNewSlot></TrainerRoute>
+        path: "add-new-slot",
+        element: (
+          <TrainerRoute>
+            <AddNewSlot></AddNewSlot>
+          </TrainerRoute>
+        ),
       },
       {
-        path : "manage-slots",
-        element: <TrainerRoute><ManageSlot></ManageSlot></TrainerRoute>
+        path: "manage-slots",
+        element: (
+          <TrainerRoute>
+            <ManageSlot></ManageSlot>
+          </TrainerRoute>
+        ),
       },
       // Admin Trainer Shared Route
       {
-        path : "post-forum",
-        element : <AdminTrainerSharedRoute><AddNewForum></AddNewForum></AdminTrainerSharedRoute>
+        path: "post-forum",
+        element: (
+          <AdminTrainerSharedRoute>
+            <AddNewForum></AddNewForum>
+          </AdminTrainerSharedRoute>
+        ),
       },
 
       // users
       {
         path: "activity-log",
-        element : <UserRoute><ActivityLog></ActivityLog></UserRoute>,
+        element: (
+          <UserRoute>
+            <ActivityLog></ActivityLog>
+          </UserRoute>
+        ),
       },
       {
         path: "booked-trainer",
-        element : <UserRoute><BookedTrainer></BookedTrainer></UserRoute>
+        element: (
+          <UserRoute>
+            <BookedTrainer></BookedTrainer>
+          </UserRoute>
+        ),
       },
       // all users
       {
         path: "profile",
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-trainers",
-        element: <AdminRoute><AllTrainerEdit></AllTrainerEdit></AdminRoute>
-      }
+        element: (
+          <AdminRoute>
+            <AllTrainerEdit></AllTrainerEdit>
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </AuthProvider>
+    <HelmetProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </AuthProvider>
+    </HelmetProvider>
   </StrictMode>
 );

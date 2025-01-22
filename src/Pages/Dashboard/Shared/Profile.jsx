@@ -29,7 +29,7 @@ const Profile = () => {
         refetch();
         setIsEdit(false)
       });
-    console.log(updatedUI);
+
   };
 
   const toggleEdit = () => {

@@ -4,7 +4,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 import { useContext } from "react";
 
 const axiosAdmin = axios.create({
-    baseURL : 'http://localhost:3000'
+    baseURL : 'https://b10a12-server-side-sumdx.vercel.app'
 })
 
 const useAxiosAdmin = () => {

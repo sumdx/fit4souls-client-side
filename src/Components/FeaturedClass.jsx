@@ -11,7 +11,7 @@ const FeaturedClass = () => {
   return (
     <div className="container mx-auto mt-20">
         <h1 class="bg-blue-100 my-8 w-fit px-6 py-4 text-center mx-auto text-blue-800 text-2xl font-medium rounded dark:bg-blue-900 dark:text-blue-300">Our Featured Classes</h1>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6  justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {featuredClassData?.map((data) => {
           return (
             <div>
@@ -36,7 +36,7 @@ const FeaturedClass = () => {
         })}
       </div>
       <div className="text-center my-16 px-8  w-fit mx-auto">
-        <NavLink to={"/classes"} type="button" class="text-white bg-blue-700 py-6 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5  me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Browse All Classes</NavLink>
+        <NavLink to={"/classes"} type="button" className="text-white bg-blue-700 py-6 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5  me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Browse All Classes</NavLink>
       </div>
     </div>
   );

@@ -8,9 +8,9 @@ const Testimonial = () => {
   const [reviewData] = useAllReviews();
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto mt-40">
       <div>
-        
+      <h1 class="bg-blue-100 my-8 w-fit px-6 py-4 text-center mx-auto text-blue-800 text-2xl font-medium rounded dark:bg-blue-900 dark:text-blue-300">Our Happy clients</h1>
       </div>
       <Swiper
         spaceBetween={50}
@@ -18,10 +18,10 @@ const Testimonial = () => {
           delay: 2000,
           disableOnInteraction: true,
         }}
-        //onSlideChange={() => console.log("slide change")}
+
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        //onSwiper={(swiper) => console.log(swiper)}
+
         breakpoints={{
           640: {
             slidesPerView: 1,

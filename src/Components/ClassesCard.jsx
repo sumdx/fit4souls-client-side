@@ -18,7 +18,7 @@ const ClassesCard = ({ classData }) => {
             {classData.classDetails} years of experience.
           </p>
           {classData.trainers?.map((data, index) => {
-            console.log(index);
+           
             if (index < 5) {
               return (
                 <NavLink  to={`/trainers/${data.trainerId}`} className="relative group inline-block">

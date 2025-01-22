@@ -47,7 +47,7 @@ const Balance = () => {
       </text>
     );
   };
-  console.log(adminStat);
+
   return (
     <div className="p-8 border ">
       <div className="">

@@ -47,6 +47,16 @@ const BookedTrainer = () => {
   
     return (
       <div>
+        <div>
+        <div className="flex flex-col justify-center items-center text-center mb-16">
+          <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            Your Booked Trainer
+          </h1>
+          <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+            We have experienced trainers to make your training journey smooth.
+          </p>
+        </div>
+      </div>
         {/* Booking Table */}
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
