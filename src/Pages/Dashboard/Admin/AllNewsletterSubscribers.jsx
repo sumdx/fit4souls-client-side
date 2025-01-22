@@ -1,5 +1,6 @@
 import React from "react";
 import useAllNewsletter from "../../../Hooks/useAllNewsletter";
+import { Helmet } from "react-helmet-async";
 
 const AllNewsletterSubscribers = () => {
   const [allNewsletterData] = useAllNewsletter();
@@ -7,6 +8,9 @@ const AllNewsletterSubscribers = () => {
 
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Newsletter Subscriber</title>
+                  </Helmet>
       <div className="flex flex-col justify-center items-center text-center">
         <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           All Newsletter Data

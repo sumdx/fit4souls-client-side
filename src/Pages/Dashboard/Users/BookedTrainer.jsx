@@ -3,6 +3,7 @@ import useBookingInfo from "../../../Hooks/useBookingInfo";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Rate } from "antd";
+import { Helmet } from "react-helmet-async";
 
 const BookedTrainer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +48,9 @@ const BookedTrainer = () => {
   
     return (
       <div>
+        <Helmet>
+                        <title>Fit4Soul | Booked Trainer</title>
+                    </Helmet>
         <div>
         <div className="flex flex-col justify-center items-center text-center mb-16">
           <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

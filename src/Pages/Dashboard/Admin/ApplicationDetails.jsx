@@ -5,6 +5,7 @@ import useAxiosAdmin from "../../../Hooks/useAxiosAdmin";
 import Swal from "sweetalert2";
 import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
 
 const ApplicationDetails = () => {
   const [message, setMessage] = useState("");
@@ -65,6 +66,9 @@ const ApplicationDetails = () => {
   };
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Application Details</title>
+                  </Helmet>
       <div>
         <div className="flex flex-col justify-center items-center text-center mb-16">
           <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

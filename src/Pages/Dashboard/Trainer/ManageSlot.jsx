@@ -3,6 +3,7 @@ import useAllSlotsByUserEmail from "../../../Hooks/useAllSlotsByUserEmail";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageSlot = () => {
   const [trainersSlotData,refetch] = useAllSlotsByUserEmail();
@@ -47,6 +48,9 @@ const ManageSlot = () => {
 
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Manage Slot</title>
+                  </Helmet>
       <div>
         <div className="flex flex-col justify-center items-center text-center mb-16">
           <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

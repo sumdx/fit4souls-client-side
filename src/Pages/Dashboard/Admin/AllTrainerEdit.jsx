@@ -6,6 +6,7 @@ import { FiDelete } from "react-icons/fi";
 import { BiTrash } from "react-icons/bi";
 import Swal from "sweetalert2";
 import useAxiosAdmin from "../../../Hooks/useAxiosAdmin";
+import { Helmet } from "react-helmet-async";
 
 const AllTrainerEdit = () => {
   const [allTrainersData, isAllTrainerFetching, allTrainerRefetch] =
@@ -40,6 +41,9 @@ const AllTrainerEdit = () => {
   };
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Trainers Edit</title>
+                  </Helmet>
       <div className="flex flex-col justify-center items-center text-center">
         <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           All Trainer Data

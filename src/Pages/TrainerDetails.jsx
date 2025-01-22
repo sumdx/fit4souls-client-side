@@ -5,6 +5,7 @@ import useAllSlotsByEmail from "../Hooks/useAllSlotsByEmail";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import Loading from "../Components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const TrainerDetails = () => {
   const { id } = useParams();
@@ -36,6 +37,9 @@ const TrainerDetails = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto mt-20">
+      <Helmet>
+                      <title>Fit4Soul | Trainer Details</title>
+                  </Helmet>
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
           <a

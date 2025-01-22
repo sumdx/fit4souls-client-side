@@ -6,6 +6,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { NavLink, useNavigate } from "react-router-dom";
 import useUsersActivityLog from "../Hooks/useUsersActivityLog";
+import { Helmet } from "react-helmet-async";
 
 const TrainersApply = () => {
   const { user } = useContext(AuthContext);
@@ -98,6 +99,9 @@ const TrainersApply = () => {
 
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Trainers Apply</title>
+                  </Helmet>
       <div>
         <h1 className="text-center text-4xl my-6 mb-8 dark:text-white ">
           Join our team today!

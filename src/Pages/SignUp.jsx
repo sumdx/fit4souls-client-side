@@ -8,6 +8,7 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.init";
 import Swal from "sweetalert2";
 import GoogleLogin from "../Components/GoogleLogin";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -59,7 +60,7 @@ const SignUp = () => {
                   {
                     Swal.fire({
                       title: "Success!",
-                      text: "Artifact Information Added Successfully",
+                      text: "Sign Up Successfully",
                       icon: "success",
                       confirmButtonText: "Okay",
                     });
@@ -107,6 +108,9 @@ const SignUp = () => {
 
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Signup</title>
+                  </Helmet>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left Side */}

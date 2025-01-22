@@ -3,6 +3,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSlotDetailsById from "../Hooks/useSlotDetailsById";
 import useTrainerDetailsByEmail from "../Hooks/useTrainerDetailsByEmail";
 import AuthProvider, { AuthContext } from "../Providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const TrainerBook = () => {
   const { id } = useParams();
@@ -66,6 +67,9 @@ const TrainerBook = () => {
 
   return (
     <div className="text-center">
+      <Helmet>
+                      <title>Fit4Soul | Trainer Book</title>
+                  </Helmet>
       <div className="flex flex-col justify-center items-center text-center">
         <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           Booking Details

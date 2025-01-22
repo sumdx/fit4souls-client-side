@@ -10,6 +10,7 @@ import {
   Legend,
 } from "recharts";
 import { MdOutlineAccountBalance } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const Balance = () => {
   const [adminStat, isStatFetching] = useStatData();
@@ -50,6 +51,9 @@ const Balance = () => {
 
   return (
     <div className="p-8 border ">
+      <Helmet>
+                      <title>Fit4Soul | Balance</title>
+                  </Helmet>
       <div className="">
         <h1 class="mb-4 ml-5 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white">
           <mark class="px-4 py-1 text-white bg-blue-600 rounded dark:bg-blue-500">

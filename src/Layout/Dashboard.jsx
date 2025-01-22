@@ -6,6 +6,7 @@ import useAdmin from "../Hooks/useAdmin";
 import useTrainer from "../Hooks/useTrainer";
 import { AuthContext } from "../Providers/AuthProvider";
 import Balance from "../Pages/Dashboard/Admin/Balance";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
@@ -13,6 +14,9 @@ const Dashboard = () => {
   const {user} = useContext(AuthContext);
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Dashboard</title>
+                  </Helmet>
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"

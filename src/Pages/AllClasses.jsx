@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAllClasses from "../Hooks/useAllClasses";
 import ClassesCard from "../Components/ClassesCard";
 import useCustomClassData from "../Hooks/useCustomClassData";
+import { Helmet } from "react-helmet-async";
 
 const AllClasses = () => {
   const [classesData] = useAllClasses();
@@ -44,6 +45,9 @@ const AllClasses = () => {
   }
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Classes</title>
+                  </Helmet>
       <div className="flex flex-col justify-center items-center text-center">
         <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           All Classes

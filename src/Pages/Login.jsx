@@ -5,6 +5,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import GoogleLogin from "../Components/GoogleLogin";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { user, signInUser, signInUserWithGoogle } = useContext(AuthContext);
@@ -34,6 +35,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Login</title>
+                  </Helmet>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
           <div class="flex flex-col justify-center">

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAxiosAdmin from "../../../Hooks/useAxiosAdmin";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddNewClass = () => {
@@ -56,6 +57,9 @@ const AddNewClass = () => {
   };
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Add Class</title>
+                  </Helmet>
       <div>
         <div>
           <div className="flex flex-col justify-center items-center text-center mb-16">

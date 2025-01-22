@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAllComunityPost from "../Hooks/useAllComunityPost";
 import CommunityPostCard from "../Components/CommunityPostCard";
 import Loading from "../Components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const Community = () => {
   const [numberOfPages, setNumberOfPages] = useState(10);
@@ -37,6 +38,9 @@ const Community = () => {
   };
   return (
     <div>
+      <Helmet>
+                      <title>Fit4Soul | Community</title>
+                  </Helmet>
       <div className="flex flex-col justify-center items-center text-center">
         <h1 class="mb-4 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           All Community Post
