@@ -8,7 +8,7 @@ Admin pass : 1Asdfg
 
 ## Installing the Fit4Souls
 
-To set up the Luxe Studio Website locally, follow these steps:
+To set up the Website locally, follow these steps:
 
 ### Clone the Repository:
 
@@ -74,3 +74,26 @@ http://localhost:5173
 - **tailwindcss**: A utility-first CSS framework for styling the application.
 - **Flobite**: TailwindCSS component library to speed up UI development.
 - **Stripe**: A third party payment gateway.
+
+## Dependencies  
+List the key dependencies used in the project:  
+```json
+"dependencies": {
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.5.0",
+    "@tanstack/react-query": "^5.64.1",
+    "antd": "^5.23.2",
+    "axios": "^1.7.9",
+    "firebase": "^11.1.0",
+    "flowbite-react": "^0.10.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-hook-form": "^7.54.2",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^6.28.1",
+    "react-select": "^5.9.0",
+    "recharts": "^2.15.0",
+    "sweetalert2": "^11.15.10",
+    "swiper": "^11.2.1"
+  },
