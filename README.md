@@ -5,6 +5,39 @@
 **Live URL**: [Fit4Soul Webiste](https://fit4souls.web.app/login)
 Admin email : admin@firforsoul.com
 Admin pass : 1Asdfg
+
+## Installing the Fit4Souls
+
+To set up the Luxe Studio Website locally, follow these steps:
+
+### Clone the Repository:
+
+```bash
+git clone https://github.com/sumdx/fit4souls-client-side.git
+cd fit4souls-client-side
+```
+
+### Install Dependencies:
+
+```bash
+npm install
+```
+
+### Start the Development Server:
+
+```bash
+npm run dev
+```
+
+### Open in Browser:
+
+Navigate to:
+
+```
+http://localhost:5173
+```
+
+---
 ## Key Features
 
 - **User Interface**: A responsive and interactive frontend for booking and payment.
