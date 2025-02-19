@@ -7,7 +7,7 @@ const LatestForumPost = () => {
   const [isTextExpand, setIsTextExpand] = useState(false);
 
   return (
-    <div className="flex-col justify-center items-center">
+    <div className="flex flex-col justify-center gap-6">
         <div>
         <h1 class="bg-blue-100 my-8 w-fit px-6 py-4 text-center mx-auto text-blue-800 text-2xl font-medium rounded dark:bg-blue-900 dark:text-blue-300">Latest Forum Post</h1>
         </div>
@@ -71,13 +71,13 @@ const LatestForumPost = () => {
         })}
       </div>
 
-      <NavLink
+      {/* <NavLink
         to={"/community"}
-        className="w-full mx-auto text-white text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        className="w-fit items-center mx-auto text-white text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
      
        >
-        See more...
-      </NavLink>
+        <h1>See more...</h1>
+      </NavLink> */}
     </div>
   );
 };

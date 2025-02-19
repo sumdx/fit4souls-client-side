@@ -3,7 +3,7 @@
 **Purpose**: This is the client-side application for the Fit4Soul project. It enables users to interact with the trainer and book the slot, view details, card payment, and manage their data with real-time data fetching and updates.
 
 **Live URL**: [Fit4Soul Webiste](https://fit4souls.web.app/login)
-Admin email : admin@firforsoul.com
+Admin email : admin@fitforsoul.com
 Admin pass : 1Asdfg
 ## Key Features
 
