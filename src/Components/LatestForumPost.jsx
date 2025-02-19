@@ -15,7 +15,7 @@ const LatestForumPost = () => {
         {latesForum.map((communityPostData) => {
           return (
             <div className="">
-              <div class="sm:max-w-sm lg:max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div class="h-full sm:max-w-sm lg:max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div className="py-6 px-4 flex gap-4 items-center">
                   <img
                     class="w-10 h-10 rounded-full"
@@ -23,8 +23,8 @@ const LatestForumPost = () => {
                     alt="Rounded avatar"
                   />
                   <div>
-                    <p>{communityPostData.userName}</p>
-                    <span class=" bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                    <p className="dark:text-white">{communityPostData.userName}</p>
+                    <span class=" bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 ">
                       {communityPostData.userRole}
                     </span>
                   </div>

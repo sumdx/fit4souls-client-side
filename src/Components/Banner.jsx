@@ -3,7 +3,7 @@ import ff8 from "./../assets/Images/ffs8.jpg";
 import cover from "./../assets/Images/cover1.png";
 const Banner = () => {
   return (
-    <div className="flex  relative">
+    <div className="flex relative ">
       <div className="flex container mx-auto flex-col md:flex-row">
         <div className="lg:w-1/2 flex flex-col  justify-center">
           {/* <p class="mb-6 text-left text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Lets Make your Health Happen</p> */}

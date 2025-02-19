@@ -2,7 +2,7 @@ import React from "react";
 import AboutIMG from "./../assets/Images/pexels-pavel-danilyuk-6339494.jpg"
 const About = () => {
   return (
-    <div className="container mx-auto lg:flex mt-4 bg-white p-10">
+    <div className="container mx-auto lg:flex mt-4 bg-white p-10 rounded-lg dark:bg-gray-800 dark:border-gray-700 ">
       <div className=" lg:w-1/2 flex flex-col  items-left justify-center">
       <p class="text-left w-fit rounded-xl  bg-blue-100 text-blue-800 text-xl mb-4 font-medium me-2 px-6 py-2  dark:bg-blue-900 dark:text-blue-300">About</p>
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

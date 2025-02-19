@@ -46,7 +46,7 @@ const Dashboard = () => {
         aria-label="Sidebar"
       >
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-          <ul class="space-y-5 font-medium flex flex-col">
+          <ul class="space-y-5 font-medium flex flex-col dark:text-white">
             {/* Admins Part */}
             {isAdmin && (
               <>
@@ -54,7 +54,7 @@ const Dashboard = () => {
                 <li>
                   <NavLink className="flex items-center text-xl">
                     <BiSolidDashboard class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                    <span class="ms-3">Dashboard</span>
+                    <span class="ms-3 dark:text-white">Dashboard</span>
                   </NavLink>
                 </li>
                 <li>
@@ -171,7 +171,7 @@ const Dashboard = () => {
             }
             
           </ul>
-          <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+          <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700 dark:text-white">
             <NavLink to={"/"} className="flex items-center text-xl">
               <BiSolidDashboard class="text-4xl w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
               <span class="ms-3">Home</span>
@@ -190,8 +190,8 @@ const Dashboard = () => {
         </div>
       </aside>
 
-      <main class="p-4 sm:ml-64">
-        <Outlet></Outlet>
+      <main class="p-4 sm:ml-64 dark:bg-gray-800 h-screen">
+        <Outlet ></Outlet>
       </main>
     </div>
   );
