@@ -7,6 +7,7 @@ import LatestForumPost from "../Components/LatestForumPost";
 import Newsletter from "../Components/Newsletter";
 import Teams from "../Components/Teams";
 import Testimonial from "../Components/Testimonial";
+import GymOverview from "../Components/GymOverview";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       <LatestForumPost></LatestForumPost>
       <Testimonial> </Testimonial>
       <Teams></Teams>
+      <GymOverview></GymOverview>
       <Newsletter></Newsletter>
     </div>
   );

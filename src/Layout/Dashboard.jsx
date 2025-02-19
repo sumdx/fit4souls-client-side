@@ -7,6 +7,7 @@ import useTrainer from "../Hooks/useTrainer";
 import { AuthContext } from "../Providers/AuthProvider";
 import Balance from "../Pages/Dashboard/Admin/Balance";
 import { Helmet } from "react-helmet-async";
+import "./../Layout/Dashboard.css"
 
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
