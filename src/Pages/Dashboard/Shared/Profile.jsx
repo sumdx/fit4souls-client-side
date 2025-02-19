@@ -58,11 +58,11 @@ const Profile = () => {
             src={userData.photoURL || user.photoURL}
             alt="Profile Avatar"
           />
-          <p className="mt-4">Last Login : {user.metadata.lastSignInTime}</p>
+          <p className="mt-4 dark:text-white">Last Login : {user.metadata.lastSignInTime}</p>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="mt-4">
-            <label className="block text-gray-700">Email</label>
+          <div className="mt-4 ">
+            <label className="block text-gray-700 dark:text-white">Email</label>
             <input
               type="email"
               name="email"
@@ -73,7 +73,7 @@ const Profile = () => {
             />
           </div>
           <div className="mt-4">
-            <label className="block text-gray-700">Name</label>
+            <label className="block text-gray-700 dark:text-white">Name</label>
             <input
               type="text"
               name="name"
@@ -84,7 +84,7 @@ const Profile = () => {
           </div>
 
           <div className="mt-4">
-            <label className="block text-gray-700">Photo URL</label>
+            <label className="block text-gray-700 dark:text-white">Photo URL</label>
             <input
               type="text"
               name="photoURL"

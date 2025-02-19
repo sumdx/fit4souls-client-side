@@ -53,7 +53,7 @@ const Balance = () => {
     <div className="p-8 border ">
       <Helmet>
                       <title>Fit4Soul | Balance</title>
-                  </Helmet>
+        </Helmet>
       <div className="">
         <h1 class="mb-4 ml-5 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white">
           <mark class="px-4 py-1 text-white bg-blue-600 rounded dark:bg-blue-500">
@@ -76,7 +76,7 @@ const Balance = () => {
 
           
         </div>
-        <div className="lg:w-3/5 text-center flex justify-center bg-gray-100 shadow-inner text-blue-700 px-8 py-10 rounded-xl">
+        <div className="lg:w-3/5 text-center flex justify-center bg-gray-100 shadow-inner dark:bg-gray-700 border-gray-800 text-blue-700 px-8 py-10 rounded-xl">
           <PieChart width={400} height={200}>
             <Pie
               data={data}
@@ -104,8 +104,8 @@ const Balance = () => {
         </div> */}
       </div>
 
-      <div className="border mt-20  bg-white  ">
-        <h1 className="text-xl text-center mt-4 font-bold">
+      <div className="border mt-20  bg-white dark:bg-gray-700  ">
+        <h1 className="text-xl text-center mt-4 font-bold dark:text-white">
           Last 6 Transactions :
         </h1>
         <div className="p-4">

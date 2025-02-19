@@ -15,8 +15,8 @@ const Dashboard = () => {
   return (
     <div>
       <Helmet>
-                      <title>Fit4Soul | Dashboard</title>
-                  </Helmet>
+        <title>Fit4Soul | Dashboard</title>
+      </Helmet>
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
@@ -190,7 +190,7 @@ const Dashboard = () => {
         </div>
       </aside>
 
-      <main class="p-4 sm:ml-64 dark:bg-gray-800 h-screen">
+      <main class="p-4 sm:ml-64 dark:bg-gray-800 min-h-screen">
         <Outlet ></Outlet>
       </main>
     </div>
