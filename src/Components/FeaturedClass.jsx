@@ -11,10 +11,10 @@ const FeaturedClass = () => {
   return (
     <div className="container mx-auto mt-20">
         <h1 class="bg-blue-100 my-8 w-fit px-6 py-4 text-center mx-auto text-blue-800 text-2xl font-medium rounded dark:bg-blue-900 dark:text-blue-300">Our Featured Classes</h1>
-      <div className="grid gap-6  justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 items-center justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {featuredClassData?.map((data) => {
           return (
-            <div>
+            <div className="mx-auto">
               <div class="max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a>
                   <img class="rounded-t-lg" src={data.photoURL} alt="" />
